@@ -9,7 +9,7 @@ order: 3
   <h2>Tell Us About Your IT Needs!</h2>
 </center>
 
-Ready to solve your problems or start a new project? Use the simple form below to tell us what you need. We specialize in IT consulting for businesses and homes, covering everythin from PC tune-ups, network troubleshooting, website design, security systems & more!
+Ready to solve your problems or start a new project? Use the simple form below to tell us what you need. We specialize in IT consulting for businesses and homes, covering everything from PC optimization, network troubleshooting, website design, security systems & more!
 
 We only ask for the information we need to qualify your request and prepare for our first conversation, ensuring we don't waste your time!
 
