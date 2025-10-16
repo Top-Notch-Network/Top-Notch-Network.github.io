@@ -4,17 +4,13 @@ title: Make A Payment
 icon: fa-solid fa-file-invoice-dollar
 order: 4
 ---
-
+<html>
 <head>
-<script 
-  src="https://www.paypal.com/sdk/js?client-id=BAAfTvbygTUD4MCBtzjZF2uqY261QZ6_H36VWQhawliDoqHDEa-qxpWzE88kY_IcTIKeS_6Eb5hvu0aphk&components=hosted-buttons&enable-funding=venmo&currency=USD">
-</script>
+  <script type="text/javascript">
+    window.location.href = "https://www.paypal.com/ncp/payment/Q85RKARU5A6WY"
+  </script>
 </head>
 <body>
-<div id="paypal-container-Q85RKARU5A6WY"></div>
-<script>
-  paypal.HostedButtons({
-    hostedButtonId: "Q85RKARU5A6WY",
-  }).render("#paypal-container-Q85RKARU5A6WY")
-</script>
+  <p>If you are not redirected automatically, click <a href='https://www.paypal.com/ncp/payment/Q85RKARU5A6WY'>this link</a></p>
 </body>
+</html>
