@@ -5,7 +5,7 @@ order: 3
 ---
 ![TNN](https://iili.io/Kef1X6l.png)
 
-<h3>Tell Us About Your IT Needs!</h3>
+Tell Us About Your IT Needs!
 
 Ready to solve your problems or start a new project? Use the simple form below to tell us what you need. We specialize in IT consulting for businesses and homes, covering everything from PC optimization, network troubleshooting, website design, security systems & more!
 
