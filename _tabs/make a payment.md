@@ -1,6 +1,6 @@
 ---
 # the default layout is 'page'
-title: Pay Invoice
+title: Make A Payment
 icon: fa-solid fa-file-invoice-dollar
 order: 4
 ---
