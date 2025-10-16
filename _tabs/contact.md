@@ -20,7 +20,6 @@ What to Expect Next:
   3. We Connect: We'll reach out via your preferred contact method (email, phone or text) to discuss the next steps and set up your consultation.
 
 We look forward to assisting you!
-
 <div id="formkeep-embed" data-formkeep-url="https://formkeep.com/p/b820baae09a36bfcc1c261640467622b?embedded=1"></div>
 
 <script type="text/javascript" src="https://pym.nprapps.org/pym.v1.min.js"></script>
