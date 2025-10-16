@@ -4,7 +4,7 @@ title: Make A Payment
 icon: fa-solid fa-file-invoice-dollar
 order: 4
 ---
-<html>
+
 <head>
 <script 
   src="https://www.paypal.com/sdk/js?client-id=BAAfTvbygTUD4MCBtzjZF2uqY261QZ6_H36VWQhawliDoqHDEa-qxpWzE88kY_IcTIKeS_6Eb5hvu0aphk&components=hosted-buttons&enable-funding=venmo&currency=USD">
@@ -18,4 +18,3 @@ order: 4
   }).render("#paypal-container-Q85RKARU5A6WY")
 </script>
 </body>
-</html>
