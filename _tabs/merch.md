@@ -10,6 +10,6 @@ order: 5
   </script>
 </head>
 <body>
-  <p>If you are not redirected automatically, click <a href='https://exclaim.gg/store/TNN-Store'>this link</a>.</p>
+  <p>If you are not redirected automatically, click <a href='https://exclaim.gg/store/TNN-Store'>this link</a></p>
 </body>
 </html>
