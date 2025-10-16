@@ -23,13 +23,12 @@ We look forward to assisting you!
 
 <center>
   <h1>Connect With Us Today!</h1>
-<div style="background-color: #36454F; padding: 20px; border-radius: 5px;">
-    <div id="formkeep-embed" data-formkeep-url="https://formkeep.com/p/b820baae09a36bfcc1c261640467622b?embedded=1" data-formkeep-color="#36454F"></div>
-</div>
+<div id="formkeep-embed" data-formkeep-url="https://formkeep.com/p/b820baae09a36bfcc1c261640467622b?embedded=1"></div>
 
 <script type="text/javascript" src="https://pym.nprapps.org/pym.v1.min.js"></script>
 <script type="text/javascript" src="https://cdn.formkeep.com/formkeep-embed.js"></script>
 
+<!-- Get notified when the form is submitted, add your own code below: -->
 <script>
 const formkeepEmbed = document.querySelector('#formkeep-embed')
 
