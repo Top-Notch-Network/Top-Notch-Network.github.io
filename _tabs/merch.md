@@ -3,7 +3,6 @@
 icon: fa-solid fa-cart-shopping
 order: 5
 ---
-If you are not redirected automatically, click [this link](https://exclaim.gg/store/TNN-Store)
 <html>
 <head>
   <script type="text/javascript">
@@ -11,5 +10,6 @@ If you are not redirected automatically, click [this link](https://exclaim.gg/st
   </script>
 </head>
 <body>
+  If you are not redirected automatically, click <a href='https://exclaim.gg/store/TNN-Store'>this link</a>
 </body>
 </html>
