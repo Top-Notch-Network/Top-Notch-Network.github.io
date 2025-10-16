@@ -5,19 +5,19 @@ order: 3
 ---
 ![TNN](https://iili.io/Kef1X6l.png)
 
-Get Started: Tell Us About Your IT Needs
+Tell Us About Your IT Needs!
 
-Ready to solve a tech problem or start a new project? Use the simple form below to tell us what you need. We specialize in IT consulting for small businesses and homes, covering everything from PC tune-ups and network troubleshooting to website design and security systems.
+Ready to solve your problems or start a new project? Use the simple form below to tell us what you need. We specialize in IT consulting for businesses and homes, covering everythin from PC tune-ups, network troubleshooting, website design, security systems & more!
 
-We only ask for the information we need to qualify your request and prepare for our first conversation, ensuring we don't waste your time.
+We only ask for the information we need to qualify your request and prepare for our first conversation, ensuring we don't waste your time!
 
 What to Expect Next:
 
-    Submit Your Request: Fill out the form below with your contact info and a brief description of the issue.
+  1. Submit Your Request: Fill out the form below with your contact info and a brief description of the issue.
 
-    We Review & Prepare: We'll review your details and assign the right IT consultant to your case.
+  2. We Review & Prepare: We'll review your details and assign the right IT consultant to your case.
 
-    We Connect: We'll reach out via your preferred contact method (email, phone or text) to discuss the next steps and set up your consultation.
+  3. We Connect: We'll reach out via your preferred contact method (email, phone or text) to discuss the next steps and set up your consultation.
 
 We look forward to assisting you!
 
