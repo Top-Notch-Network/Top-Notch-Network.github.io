@@ -15,11 +15,11 @@ We only ask for the information we need to qualify your request and prepare for 
 
 What to Expect Next:
 
-  1. Submit Your Request: Fill out the form below with your contact info and a brief description of the issue.
+  1. **Submit Your Request:** Fill out the form below with your contact info and a brief description of the issue.
 
-  2. We Review & Prepare: We'll review your details and assign the right IT consultant to your case.
+  2. **We Review & Prepare:** We'll review your details and assign the right IT consultant to your case.
 
-  3. We Connect: We'll reach out via your preferred contact method (email, phone or text) to discuss the next steps and set up your consultation.
+  3. **We Connect:** We'll reach out via your preferred contact method (email, phone or text) to discuss the next steps and set up your consultation.
 
 We look forward to assisting you!
 
