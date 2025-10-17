@@ -41,17 +41,6 @@ We look forward to assisting you!
     margin-right: 0 !important;
 }
 
-/* You might need to add one of the following to your custom CSS if the above fix doesn't work.
- * Try adding a rule for the main content wrapper used by your specific Jekyll theme, e.g.:
- 
-.page-content {
-    max-width: none !important; 
-    padding: 0 !important;
-}
- 
- */
-/* ... (rest of your existing CSS) ... */
-
 body {
   background-color: #1b1b1e;
   font-family: Helvetica, Arial, sans-serif;
