@@ -24,24 +24,33 @@ We look forward to assisting you!
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <style>
 /* * CRITICAL FIXES FOR CENTERING 
- * This section neutralizes external Jekyll theme styles that might 
- * be adding an unwanted left margin/padding to the parent container.
+ * -----------------------------
+ * We are using Bootstrap's `container` class for centering and width.
+ * This rule targets a common Jekyll-theme pattern where an outer wrapper
+ * (often `.wrapper` or `.page-content`) adds unwanted, uncentered padding.
+ * Since your form is the main content on this page, this aggressively removes
+ * any theme-level asymmetric spacing that pushes the content right.
  */
 .form-fix {
-    /* Ensures the container element takes up all available space */
-    width: 100%; 
-    /* Centers the entire block horizontally if the parent allows it */
-    margin-left: auto !important;
-    margin-right: auto !important;
+    /* Set width to 100% to ensure it uses the full space */
+    width: 100%;
+    /* Aggressively remove any theme-specific padding/margin on the outer wrapper */
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
 }
 
-.form-fix .row {
-    /* Bootstrap rows have a default negative margin to align columns. 
-       Sometimes Jekyll themes override this, causing misalignment. 
-       !important is used to ensure this rule wins. */
-    margin-left: -15px !important;
-    margin-right: -15px !important;
+/* You might need to add one of the following to your custom CSS if the above fix doesn't work.
+ * Try adding a rule for the main content wrapper used by your specific Jekyll theme, e.g.:
+ 
+.page-content {
+    max-width: none !important; 
+    padding: 0 !important;
 }
+ 
+ */
+/* ... (rest of your existing CSS) ... */
 
 body {
   background-color: #1b1b1e;
@@ -49,8 +58,6 @@ body {
   font-size: 14px;
   color: #ffffff;
 }
-
-/* ... (rest of your custom CSS) ... */
 
 .form-control {
   font-family: Helvetica, Arial, sans-serif;
@@ -176,15 +183,15 @@ h6,.h6 {
                   <label class="form-check-label" for="Preferred_Method_of_Contact_Email">
                       <input type="radio" name="Preferred Method of Contact" id="Preferred_Method_of_Contact_Email" value="Email" required="required" class="form-check-input" checked="checked" />
                       Email
-</label>                <br>
+</label>                 <br>
                   <label class="form-check-label" for="Preferred_Method_of_Contact_Phone_Call">
                       <input type="radio" name="Preferred Method of Contact" id="Preferred_Method_of_Contact_Phone_Call" value="Phone Call" required="required" class="form-check-input" />
                       Phone Call
-</label>                <br>
+</label>                 <br>
                   <label class="form-check-label" for="Preferred_Method_of_Contact_Text">
                       <input type="radio" name="Preferred Method of Contact" id="Preferred_Method_of_Contact_Text" value="Text" required="required" class="form-check-input" />
                       Text
-</label>                <br>
+</label>                 <br>
                   </div> 
               </div>
                 <div class="form-group col-xs-6" id="Phone__div">
