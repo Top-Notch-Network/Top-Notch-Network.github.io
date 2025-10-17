@@ -23,28 +23,34 @@ We look forward to assisting you!
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <style>
-/* CSS Fix: This section ensures the body and form wrapper fill the screen and centers the content */
+/* * CRITICAL FIXES FOR CENTERING 
+ * This section neutralizes external Jekyll theme styles that might 
+ * be adding an unwanted left margin/padding to the parent container.
+ */
+.form-fix {
+    /* Ensures the container element takes up all available space */
+    width: 100%; 
+    /* Centers the entire block horizontally if the parent allows it */
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+.form-fix .row {
+    /* Bootstrap rows have a default negative margin to align columns. 
+       Sometimes Jekyll themes override this, causing misalignment. 
+       !important is used to ensure this rule wins. */
+    margin-left: -15px !important;
+    margin-right: -15px !important;
+}
+
 body {
   background-color: #1b1b1e;
   font-family: Helvetica, Arial, sans-serif;
   font-size: 14px;
   color: #ffffff;
-  /* Add this to remove potential default margins from the main page element */
-  margin: 0; 
-  padding: 0;
 }
 
-/* New custom class to handle the main centering if Bootstrap is being overridden */
-.form-wrapper {
-    /* Ensures the wrapper takes full available width */
-    width: 100%; 
-    /* Centers block-level content horizontally */
-    margin-left: auto;
-    margin-right: auto;
-    /* This can help if the parent container is using flex or grid, but margin: auto is usually enough */
-    display: block; 
-}
-/* End of CSS Fix */
+/* ... (rest of your custom CSS) ... */
 
 .form-control {
   font-family: Helvetica, Arial, sans-serif;
@@ -54,7 +60,6 @@ body {
 select.form-control  {
   height: 3em;
 }
-/* ... (rest of your custom CSS is here) ... */
 .form-check-label {
   font-weight: normal;
 }
@@ -115,7 +120,8 @@ h6,.h6 {
   font-size: 1.12em;
 }
 </style>
-<div class="form-wrapper">
+
+<div class="form-fix">
   <div class="container">
     <div class="row">
       <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
