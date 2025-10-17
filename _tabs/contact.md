@@ -21,6 +21,106 @@ What to Expect Next:
 
 We look forward to assisting you!
 
+/* Custom CSS for Form Alignment and Styling */
+
+/* CRITICAL CENTERING FIX: Targets the outer wrapper to override theme styles */
+.form-fix {
+    width: 100%;
+    /* Aggressively remove any theme-specific padding/margin that pushes content right */
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+/* FIX: REMOVE THE BORDER */
+.form-fix fieldset {
+    border: none !important;
+    /* Optional: Remove default fieldset padding/margin if they exist */
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+body {
+  background-color: #1b1b1e;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  color: #ffffff;
+}
+
+/* Form element styling */
+.form-control {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  height: inherit;
+}
+select.form-control  {
+  height: 3em;
+}
+.form-check-label {
+  font-weight: normal;
+}
+input[type="checkbox"], input[type=radio] {
+    vertical-align: top;
+    transform: scale(1.5);
+    margin-right: 4px;
+    margin-left: 4px;
+}
+.text-muted {
+  color: #ffffff;
+  filter: brightness(150%)
+}
+.btn {
+  font-size: 1em;
+}
+
+/* Button styling */
+.btn-primary {
+  color: #ffffff;
+  background-color: #337ab7;
+  border-color: #1b1b1e;
+  font-size: 1.75em;
+  font-weight: bold;
+}
+.btn-primary.focus,
+.btn-primary:focus,
+.btn-primary:hover,
+.btn-primary.active,
+.btn-primary:active,
+.btn-primary.active.focus,
+.btn-primary.active:focus,
+.btn-primary.active:hover,
+.btn-primary:active.focus,
+.btn-primary:active:focus,
+.btn-primary:active:hover {
+  color: #ffffff;
+  background-color: #337ab7;
+  border-color: #1b1b1e;
+  filter: brightness(.80);
+}
+
+/* Heading styling */
+h1,.h1 {
+  font-size: 3.33em;
+  font-weight: bold;
+}
+h2,.h2 {
+  font-size: 2.5em;
+  font-weight: bold;
+}
+h3,.h3 {
+  font-size: 1.95em;
+}
+h4,.h4 {
+  font-size: 1.67em;
+}
+h5,.h5 {
+  font-size: 1.38em;
+}
+h6,.h6 {
+  font-size: 1.12em;
+}
+
 <div class="form-fix">
   <div class="container">
     <div class="row">
