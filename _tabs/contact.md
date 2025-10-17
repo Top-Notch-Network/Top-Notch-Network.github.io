@@ -20,102 +20,6 @@ What to Expect Next:
 **We Connect:** We'll reach out via your preferred contact method (email, phone or text) to discuss the next steps and set up your consultation.
 
 We look forward to assisting you!
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-<style>
-/* * CRITICAL FIXES FOR CENTERING 
- * -----------------------------
- * We are using Bootstrap's `container` class for centering and width.
- * This rule targets a common Jekyll-theme pattern where an outer wrapper
- * (often `.wrapper` or `.page-content`) adds unwanted, uncentered padding.
- * Since your form is the main content on this page, this aggressively removes
- * any theme-level asymmetric spacing that pushes the content right.
- */
-.form-fix {
-    /* Set width to 100% to ensure it uses the full space */
-    width: 100%;
-    /* Aggressively remove any theme-specific padding/margin on the outer wrapper */
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-}
-
-body {
-  background-color: #1b1b1e;
-  font-family: Helvetica, Arial, sans-serif;
-  font-size: 14px;
-  color: #ffffff;
-}
-
-.form-control {
-  font-family: Helvetica, Arial, sans-serif;
-  font-size: 14px;
-  height: inherit;
-}
-select.form-control  {
-  height: 3em;
-}
-.form-check-label {
-  font-weight: normal;
-}
-input[type="checkbox"], input[type=radio] {
-    vertical-align: top;
-    transform: scale(1.5);
-    margin-right: 4px;
-    margin-left: 4px;
-}
-.text-muted {
-  color: #ffffff;
-  filter: brightness(150%)
-}
-.btn {
-  font-size: 1em;
-}
-.btn-primary {
-  color: #ffffff;
-  background-color: #337ab7;
-  border-color: #1b1b1e;
-  font-size: 1.75em;
-  font-weight: bold;
-}
-.btn-primary.focus,
-.btn-primary:focus,
-.btn-primary:hover,
-.btn-primary.active,
-.btn-primary:active,
-.btn-primary.active.focus,
-.btn-primary.active:focus,
-.btn-primary.active:hover,
-.btn-primary:active.focus,
-.btn-primary:active:focus,
-.btn-primary:active:hover {
-  color: #ffffff;
-  background-color: #337ab7;
-  border-color: #1b1b1e;
-  filter: brightness(.80);
-}
-h1,.h1 {
-  font-size: 3.33em;
-  font-weight: bold;
-}
-h2,.h2 {
-  font-size: 2.5em;
-  font-weight: bold;
-}
-h3,.h3 {
-  font-size: 1.95em;
-}
-h4,.h4 {
-  font-size: 1.67em;
-}
-h5,.h5 {
-  font-size: 1.38em;
-}
-h6,.h6 {
-  font-size: 1.12em;
-}
-</style>
 
 <div class="form-fix">
   <div class="container">
@@ -227,7 +131,7 @@ How can we assist?</textarea>
                 </div>
               </div>
             </fieldset>
-</form>
+          </form>
       </div>
     </div>
   </div>
