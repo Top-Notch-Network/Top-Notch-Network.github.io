@@ -193,7 +193,7 @@ h6,.h6 {
               <div class="form-group col-xs-12" id="How_can_we_assist___div">
               <label title="required" for="How_can_we_assist_">How can we assist? *</label>
               <textarea name="How can we assist?" id="How_can_we_assist_" required="required" placeholder="Please give us a little more detail in regards to your consulting needs." class="form-control">
-How can we assist?</textarea>
+</textarea>
           </div>
           </div>
           <br>
