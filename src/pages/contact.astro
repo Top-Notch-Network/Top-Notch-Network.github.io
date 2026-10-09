@@ -1,0 +1,440 @@
+---
+// src/pages/contact.astro
+import '../styles/global.css';
+
+// Cloudflare Turnstile site key. Swap via PUBLIC_TURNSTILE_SITE_KEY at build time.
+// Default is Cloudflare's public "always passes" TEST key — replace before going live.
+const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || "1x00000000000000000000AA";
+
+// Contact Worker endpoint. Swap via PUBLIC_CONTACT_ENDPOINT at build time.
+// PLACEHOLDER — the Worker is not deployed yet.
+const CONTACT_ENDPOINT = import.meta.env.PUBLIC_CONTACT_ENDPOINT || "https://tnn-contact.seth-m-berg.workers.dev/";
+
+const labelClass = "block text-xs font-black tracking-widest text-zinc-400 mb-2";
+const inputClass = "w-full bg-black border border-[#27272a] focus:border-[#c20e0e] focus:outline-none text-zinc-200 placeholder:text-zinc-600 normal-case tracking-normal text-sm px-4 py-3 transition";
+
+// Address sub-fields (all optional), same order as the original FormKeep form
+const addressFields = [
+  { id: "address_line_1", label: "Street Address", autocomplete: "address-line1", wide: true },
+  { id: "address_line_2", label: "Address Line 2", autocomplete: "address-line2", wide: true },
+  { id: "city", label: "City", autocomplete: "address-level2" },
+  { id: "state", label: "State / Province / Region", autocomplete: "address-level1" },
+  { id: "postal_code", label: "Postal / Zip Code", autocomplete: "postal-code" },
+  { id: "country", label: "Country", autocomplete: "country-name" },
+];
+
+const contactMethods = ["Email", "Phone Call", "Text"];
+
+const serviceOptions = [
+  "Cloud Related",
+  "General Troubleshooting",
+  "Network - General",
+  "Network - Wireless",
+  "PC Maintenance",
+  "PC Optimization",
+  "PC Repair",
+  "Security - Physical",
+  "Security - Cyber",
+  "Troubleshooting",
+  "Voice",
+  "Website Design",
+  "Other",
+];
+
+const steps = [
+  {
+    code: "01 // SUBMIT",
+    title: "SUBMIT YOUR REQUEST",
+    description: "Fill out the form with your contact info and a brief description of the issue."
+  },
+  {
+    code: "02 // REVIEW",
+    title: "WE REVIEW & PREPARE",
+    description: "We'll review your details and assign the right IT consultant to your case."
+  },
+  {
+    code: "03 // CONNECT",
+    title: "WE CONNECT",
+    description: "We'll reach out via your preferred contact method (email, phone or text) to discuss the next steps and set up your consultation."
+  }
+];
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/png" href="/topdraftinvisbackgroundfinal001.png?v=3" />
+    <link rel="apple-touch-icon" href="/topdraftinvisbackgroundfinal001.png?v=3" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Top-Notch Network | Contact Us</title>
+  </head>
+  <body class="bg-black text-zinc-200 font-sans selection:bg-[#c20e0e] selection:text-white uppercase tracking-wider min-h-screen">
+    
+    <!-- Navigation Bar -->
+    <nav class="border-b border-[#27272a] bg-black/95 backdrop-blur sticky top-0 z-50">
+      <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+        
+        <!-- Brand Title & Emblem Logo -->
+        <a href="/" class="font-black text-base min-[400px]:text-lg sm:text-xl md:text-2xl tracking-widest text-[#e4e4e7] flex items-center gap-2 sm:gap-3 shrink-0 whitespace-nowrap">
+          <img 
+            src="/topdraftinvisbackgroundfinal001.png" 
+            alt="TNN Emblem" 
+            class="h-7 w-auto object-contain shrink-0" 
+          />
+          <span>TOP-NOTCH <span class="text-[#c20e0e]">NETWORK</span></span>
+        </a>
+
+        <!-- Right Side Nav Elements -->
+        <div class="flex items-center gap-6 lg:gap-8">
+          
+          <!-- Text Menu Links -->
+          <div class="hidden lg:flex items-center space-x-6 lg:space-x-8 text-xs font-bold tracking-widest text-zinc-400">
+            <a href="/about" class="hover:text-white transition">About</a>
+            <a href="/services" class="hover:text-white transition">Services</a>
+
+            <!-- Media Dropdown -->
+            <div class="relative group">
+              <button class="flex items-center gap-1 hover:text-white transition py-2 uppercase focus:outline-none">
+                <span>Media</span>
+                <svg class="w-3 h-3 text-zinc-400 group-hover:text-white transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+              </button>
+              
+              <!-- Dropdown Menu Box -->
+              <div class="absolute left-0 top-full hidden group-hover:flex flex-col bg-[#121215] border border-[#27272a] w-52 py-2 shadow-2xl z-50">
+                <a href="/media/blog" class="px-4 py-2.5 text-[11px] text-zinc-300 hover:text-white hover:bg-[#c20e0e] transition">BLOG</a>
+                <a href="/media/podcast" class="px-4 py-2.5 text-[11px] text-zinc-300 hover:text-white hover:bg-[#c20e0e] transition">PODCAST</a>
+                <a href="/media/youtube" class="px-4 py-2.5 text-[11px] text-zinc-300 hover:text-white hover:bg-[#c20e0e] transition">YOUTUBE</a>
+                <a href="/media/instagram" class="px-4 py-2.5 text-[11px] text-zinc-300 hover:text-white hover:bg-[#c20e0e] transition">INSTAGRAM</a>
+              </div>
+            </div>
+
+            <!-- Networks Tactical Dropdown -->
+            <div class="relative group">
+              <button class="flex items-center gap-1 hover:text-white transition py-2 uppercase focus:outline-none">
+                <span>Networks</span>
+                <svg class="w-3 h-3 text-zinc-400 group-hover:text-white transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+              </button>
+              
+              <!-- Dropdown Menu Box -->
+              <div class="absolute right-0 lg:left-0 top-full hidden group-hover:flex flex-col bg-[#121215] border border-[#27272a] w-52 py-2 shadow-2xl z-50">
+                <a href="https://nethead.top-notchnetwork.com" class="px-4 py-2.5 text-[11px] text-zinc-300 hover:text-white hover:bg-[#c20e0e] transition">
+                  NETHEAD
+                </a>
+                <a href="https://gaming.top-notchnetwork.com" class="px-4 py-2.5 text-[11px] text-zinc-300 hover:text-white hover:bg-[#c20e0e] transition">
+                  TOP-NOTCH GAMING
+                </a>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Action Buttons Group -->
+          <div class="hidden lg:flex items-center gap-3">
+            <!-- Solid Crimson Contact Button -->
+            <a href="/contact" class="bg-[#c20e0e] hover:bg-[#9e0b0b] text-white font-black px-4 py-2.5 text-xs transition border border-[#d30000]">
+              CONTACT
+            </a>
+
+            <!-- Inverted Crimson Merch Button -->
+            <a href="https://exclaim.gg/store/TNN-Store" target="_blank" rel="noopener noreferrer" class="bg-transparent hover:bg-[#c20e0e] text-[#c20e0e] hover:text-white font-black px-4 py-2.5 text-xs transition border border-[#c20e0e]">
+              MERCH
+            </a>
+
+            <!-- Inverted Emerald Green Payment Button (External PayPal Link) -->
+            <a 
+              href="https://www.paypal.com/ncp/payment/Q85RKARU5A6WY" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              class="bg-transparent hover:bg-[#16a34a] text-[#16a34a] hover:text-white font-black px-4 py-2.5 text-xs transition border border-[#16a34a]"
+            >
+              MAKE A PAYMENT
+            </a>
+          </div>
+
+
+          <!-- Mobile Menu Toggle (below lg only) -->
+          <button type="button" id="mobile-menu-toggle" class="lg:hidden inline-flex items-center justify-center w-10 h-10 -mr-2 text-zinc-300 hover:text-white transition focus:outline-none focus-visible:ring-2 focus-visible:ring-[#c20e0e]" aria-controls="mobile-menu" aria-expanded="false" aria-label="Open menu">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+          </button>
+
+        </div>
+
+      </div>
+
+      <!-- Mobile Menu Panel (below lg only) -->
+      <div id="mobile-menu" class="lg:hidden border-t border-[#27272a] bg-black max-h-[calc(100dvh-5rem)] overflow-y-auto" hidden>
+        <div class="max-w-7xl mx-auto px-6 py-4 flex flex-col text-xs font-bold tracking-widest text-zinc-400">
+          <a href="/about" class="py-3 hover:text-white transition">About</a>
+          <a href="/services" class="py-3 hover:text-white transition">Services</a>
+
+          <button type="button" class="group flex items-center justify-between w-full py-3 uppercase tracking-widest hover:text-white transition focus:outline-none focus-visible:text-white" aria-expanded="false" aria-controls="mobile-media-menu" data-menu-toggle>
+            <span>Media</span>
+            <svg class="w-3 h-3 text-zinc-400 group-hover:text-white group-aria-expanded:text-white transition-transform group-aria-expanded:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+          </button>
+          <div id="mobile-media-menu" class="flex flex-col bg-[#121215] border border-[#27272a] py-2 mb-2" hidden>
+            <a href="/media/blog" class="block px-4 py-3 text-[11px] text-zinc-300 hover:text-white hover:bg-[#c20e0e] transition">BLOG</a>
+            <a href="/media/podcast" class="block px-4 py-3 text-[11px] text-zinc-300 hover:text-white hover:bg-[#c20e0e] transition">PODCAST</a>
+            <a href="/media/youtube" class="block px-4 py-3 text-[11px] text-zinc-300 hover:text-white hover:bg-[#c20e0e] transition">YOUTUBE</a>
+            <a href="/media/instagram" class="block px-4 py-3 text-[11px] text-zinc-300 hover:text-white hover:bg-[#c20e0e] transition">INSTAGRAM</a>
+          </div>
+
+          <button type="button" class="group flex items-center justify-between w-full py-3 uppercase tracking-widest hover:text-white transition focus:outline-none focus-visible:text-white" aria-expanded="false" aria-controls="mobile-networks-menu" data-menu-toggle>
+            <span>Networks</span>
+            <svg class="w-3 h-3 text-zinc-400 group-hover:text-white group-aria-expanded:text-white transition-transform group-aria-expanded:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+          </button>
+          <div id="mobile-networks-menu" class="flex flex-col bg-[#121215] border border-[#27272a] py-2 mb-2" hidden>
+            <a href="https://nethead.top-notchnetwork.com" class="block px-4 py-3 text-[11px] text-zinc-300 hover:text-white hover:bg-[#c20e0e] transition">NETHEAD</a>
+            <a href="https://gaming.top-notchnetwork.com" class="block px-4 py-3 text-[11px] text-zinc-300 hover:text-white hover:bg-[#c20e0e] transition">TOP-NOTCH GAMING</a>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-4 mt-2 border-t border-[#27272a]">
+            <a href="/contact" class="bg-[#c20e0e] hover:bg-[#9e0b0b] text-white font-black px-4 py-3 text-xs text-center transition border border-[#d30000]">
+              CONTACT
+            </a>
+            <a href="https://exclaim.gg/store/TNN-Store" target="_blank" rel="noopener noreferrer" class="bg-transparent hover:bg-[#c20e0e] text-[#c20e0e] hover:text-white font-black px-4 py-3 text-xs text-center transition border border-[#c20e0e]">
+              MERCH
+            </a>
+            <a href="https://www.paypal.com/ncp/payment/Q85RKARU5A6WY" target="_blank" rel="noopener noreferrer" class="bg-transparent hover:bg-[#16a34a] text-[#16a34a] hover:text-white font-black px-4 py-3 text-xs text-center transition border border-[#16a34a]">
+              MAKE A PAYMENT
+            </a>
+          </div>
+        </div>
+      </div>
+      <script is:inline>
+        (() => {
+          const menu = document.getElementById('mobile-menu');
+          const toggle = document.getElementById('mobile-menu-toggle');
+          if (!menu || !toggle) return;
+          const setOpen = (open) => {
+            menu.hidden = !open;
+            toggle.setAttribute('aria-expanded', String(open));
+            toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+          };
+          toggle.addEventListener('click', () => setOpen(menu.hidden));
+          menu.querySelectorAll('[data-menu-toggle]').forEach((btn) => {
+            btn.addEventListener('click', () => {
+              const sub = document.getElementById(btn.getAttribute('aria-controls'));
+              const open = sub.hidden;
+              sub.hidden = !open;
+              btn.setAttribute('aria-expanded', String(open));
+            });
+          });
+          menu.querySelectorAll('[data-menu-close]').forEach((a) => a.addEventListener('click', () => setOpen(false)));
+          document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !menu.hidden) { setOpen(false); toggle.focus(); }
+          });
+          window.matchMedia('(min-width: 64rem)').addEventListener('change', (e) => { if (e.matches) setOpen(false); });
+        })();
+      </script>
+    </nav>
+
+    <main class="w-full">
+
+      <!-- Hero Section -->
+      <section class="relative max-w-7xl mx-auto px-6 pt-20 pb-12">
+        <span class="text-[#c20e0e] text-xs font-black tracking-widest block mb-4">// CONTACT</span>
+        <h1 class="text-4xl sm:text-6xl md:text-7xl font-black tracking-tight text-[#e4e4e7] leading-tight mb-6">
+          CONNECT WITH <br />
+          <span class="text-[#c20e0e]">US TODAY</span>
+        </h1>
+
+        <p class="text-zinc-400 text-sm md:text-base normal-case max-w-2xl font-normal leading-relaxed">
+          Ready to solve your problems or start a new project? Use the simple form below to tell us what you need. We only ask for the information we need to qualify your request and prepare for our first conversation, ensuring we don't waste your time.
+        </p>
+      </section>
+
+      <!-- Form + Process -->
+      <section class="max-w-7xl mx-auto px-6 pb-24">
+        <div class="grid lg:grid-cols-3 gap-8 items-start">
+
+          <!-- Form Card -->
+          <div class="lg:col-span-2 bg-[#121215] border border-[#27272a] p-6 md:p-10">
+
+            <form id="contact-form" class="flex flex-col gap-6" novalidate>
+              <div>
+                <span class="text-[#c20e0e] text-xs font-black tracking-widest block mb-2">// REQUEST A CONSULTATION</span>
+                <h2 class="text-3xl md:text-4xl font-black text-[#e4e4e7]">TELL US ABOUT YOUR IT NEEDS</h2>
+                <p class="text-zinc-500 text-xs normal-case mt-3">Fields marked <span class="text-[#c20e0e]">*</span> are required.</p>
+              </div>
+
+              <div class="grid sm:grid-cols-2 gap-6">
+                <div>
+                  <label for="first_name" class={labelClass}>First Name <span class="text-[#c20e0e]">*</span></label>
+                  <input type="text" id="first_name" name="first_name" required autocomplete="given-name" maxlength="100" class={inputClass} />
+                </div>
+                <div>
+                  <label for="last_name" class={labelClass}>Last Name <span class="text-[#c20e0e]">*</span></label>
+                  <input type="text" id="last_name" name="last_name" required autocomplete="family-name" maxlength="100" class={inputClass} />
+                </div>
+              </div>
+
+              <div>
+                <label for="business_name" class={labelClass}>Business Name</label>
+                <input type="text" id="business_name" name="business_name" autocomplete="organization" maxlength="200" class={inputClass} />
+              </div>
+
+              <fieldset>
+                <legend class={labelClass}>Address</legend>
+                <div class="grid sm:grid-cols-2 gap-x-6 gap-y-4">
+                  {addressFields.map((a) => (
+                    <div class={a.wide ? "sm:col-span-2" : ""}>
+                      <input type="text" id={a.id} name={a.id} autocomplete={a.autocomplete} maxlength="200" aria-label={a.label} class={inputClass} />
+                      <small class="block text-[11px] text-zinc-500 tracking-widest mt-1.5">{a.label}</small>
+                    </div>
+                  ))}
+                </div>
+              </fieldset>
+
+              <div class="grid sm:grid-cols-2 gap-6">
+                <div>
+                  <label for="email" class={labelClass}>Email <span class="text-[#c20e0e]">*</span></label>
+                  <input type="email" id="email" name="email" required autocomplete="email" maxlength="254" placeholder="example@example.com" class={inputClass} />
+                </div>
+                <div>
+                  <label for="phone" class={labelClass}>Phone <span class="text-[#c20e0e]">*</span></label>
+                  <input type="tel" id="phone" name="phone" required autocomplete="tel" maxlength="40" placeholder="123-456-7890" class={inputClass} />
+                </div>
+              </div>
+
+              <fieldset>
+                <legend class={labelClass}>Preferred Method of Contact <span class="text-[#c20e0e]">*</span></legend>
+                <div class="flex flex-col sm:flex-row gap-3 sm:gap-6">
+                  {contactMethods.map((m, i) => (
+                    <label class="flex items-center gap-3 text-xs font-bold tracking-widest text-zinc-300 cursor-pointer">
+                      <input type="radio" name="preferred_contact" value={m} required checked={i === 0} class="w-4 h-4 accent-[#c20e0e]" />
+                      {m}
+                    </label>
+                  ))}
+                </div>
+              </fieldset>
+
+              <div>
+                <label for="service" class={labelClass}>Service of Interest <span class="text-[#c20e0e]">*</span></label>
+                <select id="service" name="service" required class={inputClass + " uppercase tracking-widest text-xs"}>
+                  <option value="">Choose</option>
+                  {serviceOptions.map((o) => <option value={o}>{o}</option>)}
+                </select>
+                <small class="block text-[11px] text-zinc-500 tracking-widest mt-1.5">Please choose one of the following</small>
+              </div>
+
+              <div>
+                <label for="message" class={labelClass}>How can we assist? <span class="text-[#c20e0e]">*</span></label>
+                <textarea id="message" name="message" required rows="6" maxlength="5000" placeholder="Please give us a little more detail in regards to your consulting needs." class={inputClass + " resize-y"}></textarea>
+              </div>
+
+              <!-- Honeypot (leave empty) -->
+              <div class="absolute -left-[9999px] w-px h-px overflow-hidden" aria-hidden="true">
+                <label for="website">Website</label>
+                <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" value="" />
+              </div>
+
+              <!-- Cloudflare Turnstile -->
+              <div class="cf-turnstile" data-sitekey={TURNSTILE_SITE_KEY} data-theme="dark" data-response-field-name="cf-turnstile-response"></div>
+
+              <div id="form-error" class="hidden border border-[#c20e0e] bg-[#c20e0e]/10 p-4 text-xs font-bold tracking-widest text-[#e4e4e7]" role="alert" aria-live="assertive">
+                <span class="text-[#c20e0e] font-black block mb-1">// TRANSMISSION FAILED</span>
+                <span id="form-error-text" class="normal-case font-normal tracking-wider text-zinc-300 text-sm">Something went wrong.</span>
+                <span class="block normal-case font-normal tracking-wider text-zinc-400 text-sm mt-2">You can also email us directly at <a href="mailto:contact@top-notchnetwork.com" class="text-[#c20e0e] hover:text-white underline">contact@top-notchnetwork.com</a>.</span>
+              </div>
+
+              <button type="submit" id="submit-btn" class="bg-[#c20e0e] hover:bg-[#9e0b0b] text-white font-black px-10 py-5 text-xs tracking-widest border border-[#d30000] shadow-[0_0_25px_rgba(194,14,14,0.3)] transition disabled:opacity-60 disabled:cursor-wait">
+                SUBMIT
+              </button>
+            </form>
+
+            <!-- Thank-you State -->
+            <div id="form-success" class="hidden text-center py-10" role="status" aria-live="polite" tabindex="-1">
+              <span class="text-[#c20e0e] text-xs font-black tracking-widest block mb-4">// MESSAGE RECEIVED</span>
+              <h2 class="text-3xl md:text-5xl font-black text-[#e4e4e7] mb-6">
+                THANK <span class="text-[#c20e0e]">YOU.</span>
+              </h2>
+              <p class="text-zinc-400 text-sm normal-case max-w-xl mx-auto mb-8">
+                We'll review your details, assign the right consultant to your case, and reach out via your preferred contact method to discuss next steps.
+              </p>
+              <a href="/" class="inline-block bg-[#121215] hover:bg-zinc-800 text-zinc-300 font-bold px-8 py-4 text-xs tracking-widest text-center border border-[#27272a] transition">
+                BACK TO HOME
+              </a>
+            </div>
+          </div>
+
+          <!-- What To Expect -->
+          <div class="flex flex-col gap-6">
+            <span class="text-[#c20e0e] text-xs font-black tracking-widest block">// WHAT TO EXPECT NEXT</span>
+            {steps.map((s) => (
+              <div class="bg-[#121215] border border-[#27272a] p-6 md:p-8">
+                <div class="text-xs font-black text-[#c20e0e] mb-4">{s.code}</div>
+                <h3 class="text-xl font-black text-[#e4e4e7] mb-3">{s.title}</h3>
+                <p class="text-zinc-400 text-sm normal-case leading-relaxed">{s.description}</p>
+              </div>
+            ))}
+          </div>
+
+        </div>
+      </section>
+
+    </main>
+
+    <script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+    <script is:inline define:vars={{ CONTACT_ENDPOINT }}>
+      (() => {
+        const form = document.getElementById('contact-form');
+        const btn = document.getElementById('submit-btn');
+        const errBox = document.getElementById('form-error');
+        const errText = document.getElementById('form-error-text');
+        const success = document.getElementById('form-success');
+        const showError = (msg) => {
+          errText.textContent = msg;
+          errBox.classList.remove('hidden');
+          errBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        };
+        form.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          errBox.classList.add('hidden');
+          if (!form.checkValidity()) {
+            form.reportValidity();
+            return;
+          }
+          const data = Object.fromEntries(new FormData(form).entries());
+          if (!data['cf-turnstile-response']) {
+            showError('Please complete the security check above and try again.');
+            return;
+          }
+          btn.disabled = true;
+          btn.textContent = 'SENDING…';
+          try {
+            const res = await fetch(CONTACT_ENDPOINT, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(data),
+            });
+            const body = await res.json().catch(() => ({}));
+            if (!res.ok || !body.ok) throw new Error(body.error || 'We could not send your message. Please try again.');
+            form.classList.add('hidden');
+            success.classList.remove('hidden');
+            success.focus();
+            success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          } catch (err) {
+            showError(err instanceof TypeError ? 'Network error. Please check your connection and try again.' : err.message);
+            if (window.turnstile) window.turnstile.reset();
+          } finally {
+            btn.disabled = false;
+            btn.textContent = 'SUBMIT';
+          }
+        });
+      })();
+    </script>
+
+    <!-- Centered Copyright Footer -->
+    <footer class="border-t border-[#27272a] py-8 text-center text-xs text-zinc-400">
+      <div class="max-w-7xl mx-auto px-6">
+        © 2026 TOP-NOTCH NETWORK LLC. ALL RIGHTS RESERVED.
+      </div>
+    </footer>
+
+  </body>
+</html>
