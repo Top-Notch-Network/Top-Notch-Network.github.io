@@ -24,21 +24,15 @@ const addressFields = [
 
 const contactMethods = ["Email", "Phone Call", "Text"];
 
-const serviceOptions = [
-  "Cloud Related",
-  "General Troubleshooting",
-  "Network - General",
-  "Network - Wireless",
-  "PC Maintenance",
-  "PC Optimization",
-  "PC Repair",
-  "Security - Physical",
-  "Security - Cyber",
-  "Troubleshooting",
-  "Voice",
-  "Website Design",
-  "Other",
+// Service of Interest: mirrors the Services page (src/pages/services.astro), 4 categories / 8 services.
+// Values must match SERVICE_CATEGORIES in the tnn-contact Worker (src/index.js).
+const serviceGroups = [
+  { label: "Executive & Leadership", options: ["Executive Stewardship & Coaching", "Organizational Governance Advisory"] },
+  { label: "Hardware & Systems", options: ["PC & Workstation Architecture Advisory", "Systems Maintenance & Troubleshooting Strategy"] },
+  { label: "Cloud & On-Prem Architecture", options: ["Hybrid Cloud Migration Strategy", "High-Availability System Design"] },
+  { label: "Security & Process Governance", options: ["Impact & Security Posture Auditing", "ITIL & ITSM Process Architecture"] },
 ];
+const serviceFallback = "Not sure / something else";
 
 const steps = [
   {
@@ -257,7 +251,7 @@ const steps = [
             <form id="contact-form" class="flex flex-col gap-6" novalidate>
               <div>
                 <span class="text-[#c20e0e] text-xs font-black tracking-widest block mb-2">// REQUEST A CONSULTATION</span>
-                <h2 class="text-3xl md:text-4xl font-black text-[#e4e4e7]">TELL US ABOUT YOUR IT NEEDS</h2>
+                <h2 class="text-3xl md:text-4xl font-black text-[#e4e4e7]">TELL US ABOUT YOUR MISSION</h2>
                 <p class="text-zinc-500 text-xs normal-case mt-3">Fields marked <span class="text-[#c20e0e]">*</span> are required.</p>
               </div>
 
@@ -316,7 +310,12 @@ const steps = [
                 <label for="service" class={labelClass}>Service of Interest <span class="text-[#c20e0e]">*</span></label>
                 <select id="service" name="service" required class={inputClass + " uppercase tracking-widest text-xs"}>
                   <option value="">Choose</option>
-                  {serviceOptions.map((o) => <option value={o}>{o}</option>)}
+                  {serviceGroups.map((g) => (
+                    <optgroup label={g.label}>
+                      {g.options.map((o) => <option value={o}>{o}</option>)}
+                    </optgroup>
+                  ))}
+                  <option value={serviceFallback}>{serviceFallback}</option>
                 </select>
                 <small class="block text-[11px] text-zinc-500 tracking-widest mt-1.5">Please choose one of the following</small>
               </div>
