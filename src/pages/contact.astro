@@ -1,6 +1,7 @@
 ---
 // src/pages/contact.astro
 import '../styles/global.css';
+import ServiceChips from '../components/service-field/ServiceChips.astro';
 
 // Cloudflare Turnstile site key (public) for the "TNN Contact Form" widget
 // (top-notchnetwork.com, www.top-notchnetwork.com). Override via PUBLIC_TURNSTILE_SITE_KEY at build time.
@@ -24,15 +25,6 @@ const addressFields = [
 
 const contactMethods = ["Email", "Phone Call", "Text"];
 
-// Service of Interest: mirrors the Services page (src/pages/services.astro), 4 categories / 8 services.
-// Values must match SERVICE_CATEGORIES in the tnn-contact Worker (src/index.js).
-const serviceGroups = [
-  { label: "Executive & Leadership", options: ["Executive Stewardship & Coaching", "Organizational Governance Advisory"] },
-  { label: "Hardware & Systems", options: ["PC & Workstation Architecture Advisory", "Systems Maintenance & Troubleshooting Strategy"] },
-  { label: "Cloud & On-Prem Architecture", options: ["Hybrid Cloud Migration Strategy", "High-Availability System Design"] },
-  { label: "Security & Process Governance", options: ["Impact & Security Posture Auditing", "ITIL & ITSM Process Architecture"] },
-];
-const serviceFallback = "Not sure / something else";
 
 const steps = [
   {
@@ -306,19 +298,7 @@ const steps = [
                 </div>
               </fieldset>
 
-              <div>
-                <label for="service" class={labelClass}>Service of Interest <span class="text-[#c20e0e]">*</span></label>
-                <select id="service" name="service" required class={inputClass + " uppercase tracking-widest text-xs"}>
-                  <option value="">Choose</option>
-                  {serviceGroups.map((g) => (
-                    <optgroup label={g.label}>
-                      {g.options.map((o) => <option value={o}>{o}</option>)}
-                    </optgroup>
-                  ))}
-                  <option value={serviceFallback}>{serviceFallback}</option>
-                </select>
-                <small class="block text-[11px] text-zinc-500 tracking-widest mt-1.5">Please choose one of the following</small>
-              </div>
+              <ServiceChips />
 
               <div>
                 <label for="message" class={labelClass}>How can we assist? <span class="text-[#c20e0e]">*</span></label>
@@ -393,11 +373,19 @@ const steps = [
         form.addEventListener('submit', async (e) => {
           e.preventDefault();
           errBox.classList.add('hidden');
+          // Services: at least one checkbox (shows its own inline error); checked alongside native validation.
+          const servicesOk = window.tnnServices ? window.tnnServices.validate() : true;
           if (!form.checkValidity()) {
             form.reportValidity();
             return;
           }
-          const data = Object.fromEntries(new FormData(form).entries());
+          if (!servicesOk) {
+            window.tnnServices.focus();
+            return;
+          }
+          const fd = new FormData(form);
+          const data = Object.fromEntries([...fd.entries()].filter(([k]) => k !== 'services'));
+          data.services = fd.getAll('services'); // JSON array, as the tnn-contact Worker expects
           if (!data['cf-turnstile-response']) {
             showError('Please complete the security check above and try again.');
             return;

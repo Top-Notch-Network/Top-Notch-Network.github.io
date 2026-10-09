@@ -1,0 +1,71 @@
+---
+// Service of Interest: multi-select chips (from design Option C). Real checkboxes named "services";
+// at least one is required (enforced by the inline script below, since checkbox groups have no native "required one").
+// Values must match SERVICE_CATEGORIES in the tnn-contact Worker.
+import { serviceGroups, fallbackService } from "./data";
+const labelClass = "block text-xs font-black tracking-widest text-zinc-400 mb-2";
+const groups = [...serviceGroups, { id: "other", label: "Other", icon: fallbackService.icon, items: [fallbackService] }];
+const chipClass = [
+  "group/chip flex sm:inline-flex items-start sm:items-center gap-2.5 w-full sm:w-auto",
+  "px-3.5 py-3 sm:py-2 border border-[#27272a] bg-black text-sm sm:text-[13px] leading-snug text-left text-zinc-300",
+  "cursor-pointer select-none transition hover:border-zinc-500 hover:text-white",
+  "has-checked:bg-[#c20e0e] has-checked:border-[#c20e0e] has-checked:text-white has-checked:shadow-[0_0_16px_rgba(194,14,14,0.3)]",
+  "has-focus-visible:ring-2 has-focus-visible:ring-[#c20e0e] has-focus-visible:ring-offset-2 has-focus-visible:ring-offset-[#121215]",
+].join(" ");
+const boxClass = "mt-px sm:mt-0 shrink-0 grid place-items-center w-4 h-4 border border-zinc-600 transition group-has-checked/chip:bg-white group-has-checked/chip:border-white";
+---
+<fieldset
+  id="services-field" tabindex="-1" data-services
+  aria-describedby="services-hint"
+  class="normal-case tracking-normal focus:outline-none transition-shadow data-[invalid=true]:ring-1 data-[invalid=true]:ring-[#c20e0e] data-[invalid=true]:ring-offset-[10px] data-[invalid=true]:ring-offset-[#121215]"
+>
+  <legend class={labelClass + " uppercase tracking-widest"}>Service of Interest <span class="text-[#c20e0e]">*</span></legend>
+  <div class="divide-y divide-[#27272a] border-y border-[#27272a] mt-1">
+    {groups.map((g) => (
+      <div role="group" aria-labelledby={`svc-g-${g.id}`} class="py-4 sm:grid sm:grid-cols-[13rem_1fr] sm:gap-4 sm:items-start">
+        <div id={`svc-g-${g.id}`} class="flex items-center gap-2 mb-3 sm:mb-0 sm:pt-2">
+          <svg class="w-3.5 h-3.5 text-[#c20e0e] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d={g.icon} /></svg>
+          <span class="text-[11px] font-black uppercase tracking-[0.18em] text-zinc-500">{g.label}</span>
+        </div>
+        <div class="grid grid-cols-1 gap-2 sm:flex sm:flex-wrap">
+          {g.items.map((i) => (
+            <label class={chipClass + (g.id === "other" ? " border-dashed text-zinc-400" : "")} title={i.blurb}>
+              <input type="checkbox" name="services" value={i.value} class="sr-only" />
+              <span class={boxClass} aria-hidden="true">
+                <svg class="w-3 h-3 text-[#c20e0e] opacity-0 group-has-checked/chip:opacity-100" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10" /></svg>
+              </span>
+              <span>{i.label}</span>
+            </label>
+          ))}
+        </div>
+      </div>
+    ))}
+  </div>
+  <p id="services-error" role="alert" aria-live="assertive" class="empty:hidden mt-3 flex items-center gap-2 text-xs font-bold text-[#ff4d4d]"></p>
+  <small id="services-hint" class="block text-[11px] text-zinc-500 uppercase tracking-widest mt-2">Choose all that apply</small>
+</fieldset>
+
+<script is:inline>
+  (() => {
+    const fs = document.querySelector('[data-services]');
+    if (!fs) return;
+    const boxes = [...fs.querySelectorAll('input[name="services"]')];
+    const err = document.getElementById('services-error');
+    const MSG = 'Please choose at least one service.';
+    const setInvalid = (on) => {
+      fs.dataset.invalid = String(on);
+      err.textContent = on ? MSG : '';
+      boxes.forEach((b) => {
+        if (on) { b.setAttribute('aria-invalid', 'true'); b.setAttribute('aria-describedby', 'services-error'); }
+        else { b.removeAttribute('aria-invalid'); b.removeAttribute('aria-describedby'); }
+      });
+    };
+    boxes.forEach((b) => b.addEventListener('change', () => { if (boxes.some((x) => x.checked)) setInvalid(false); }));
+    window.tnnServices = {
+      // Returns true when at least one service is selected; otherwise shows the inline error.
+      validate() { const ok = boxes.some((b) => b.checked); setInvalid(!ok); return ok; },
+      focus() { fs.scrollIntoView({ behavior: 'smooth', block: 'center' }); fs.focus({ preventScroll: true }); },
+      values() { return boxes.filter((b) => b.checked).map((b) => b.value); },
+    };
+  })();
+</script>
