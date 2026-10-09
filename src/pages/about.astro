@@ -1,0 +1,246 @@
+---
+// src/pages/about.astro
+import '../styles/global.css';
+
+const companyMilestones = [
+  {
+    code: "01 // FOUNDATION",
+    title: "THE NETWORK ORIGIN",
+    description: "Built on a single premise: to gather top-notch people capable of providing high-level utility, service, and leadership in their respective fields."
+  },
+  {
+    code: "02 // EVOLUTION",
+    title: "STEWARDSHIP CONSULTING",
+    description: "Expanded into full-spectrum consulting—bridging organizational strategy, governance, and executive leadership to scale our members' impact."
+  },
+  {
+    code: "03 // COALITION",
+    title: "CROSS-INDUSTRY UNITY",
+    description: "Uniting proven leaders across business, education, family, and public service to share frameworks, resources, and operational strength."
+  }
+];
+
+const companyPillars = [
+  {
+    code: "01 // AUDIT",
+    title: "IMPACT AUDITING",
+    description: "Measuring true wealth created versus mere assets accumulated. Evaluating genuine value contribution across organizations."
+  },
+  {
+    code: "02 // OPTIMIZE",
+    title: "UTILITY OPTIMIZATION",
+    description: "Streamlining operational noise, system bottlenecks, and self-interest friction to prioritize high-level service."
+  },
+  {
+    code: "03 // ARCHITECT",
+    title: "LEGACY ARCHITECTURE",
+    description: "Designing resilient technical systems, governance frameworks, and leadership pipelines that outlast the founder."
+  }
+];
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/png" href="/topdraftinvisbackgroundfinal001.png?v=3" />
+    <link rel="apple-touch-icon" href="/topdraftinvisbackgroundfinal001.png?v=3" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Top-Notch Network | About The Company</title>
+  </head>
+  <body class="bg-black text-zinc-200 font-sans selection:bg-[#c20e0e] selection:text-white uppercase tracking-wider min-h-screen">
+    
+    <nav class="border-b border-[#27272a] bg-black/95 backdrop-blur sticky top-0 z-50">
+      <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+        
+        <a href="/" class="font-black text-xl md:text-2xl tracking-widest text-[#e4e4e7] flex items-center gap-3 shrink-0 whitespace-nowrap">
+          <img 
+            src="/topdraftinvisbackgroundfinal001.png" 
+            alt="TNN Emblem" 
+            class="h-7 w-auto object-contain shrink-0" 
+          />
+          <span>TOP-NOTCH <span class="text-[#c20e0e]">NETWORK</span></span>
+        </a>
+
+        <div class="flex items-center gap-6 lg:gap-8">
+          
+          <div class="hidden md:flex items-center space-x-6 lg:space-x-8 text-xs font-bold tracking-widest text-zinc-400">
+            <a href="/about" class="text-white font-black transition">About</a>
+            <a href="/services" class="hover:text-white transition">Services</a>
+
+            <div class="relative group">
+              <button class="flex items-center gap-1 hover:text-white transition py-2 uppercase focus:outline-none">
+                <span>Media</span>
+                <svg class="w-3 h-3 text-zinc-400 group-hover:text-white transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+              </button>
+              
+              <div class="absolute left-0 top-full hidden group-hover:flex flex-col bg-[#121215] border border-[#27272a] w-52 py-2 shadow-2xl z-50">
+                <a href="/media/blog" class="px-4 py-2.5 text-[11px] text-zinc-300 hover:text-white hover:bg-[#c20e0e] transition">BLOG</a>
+                <a href="/media/podcast" class="px-4 py-2.5 text-[11px] text-zinc-300 hover:text-white hover:bg-[#c20e0e] transition">PODCAST</a>
+                <a href="/media/youtube" class="px-4 py-2.5 text-[11px] text-zinc-300 hover:text-white hover:bg-[#c20e0e] transition">YOUTUBE</a>
+                <a href="/media/instagram" class="px-4 py-2.5 text-[11px] text-zinc-300 hover:text-white hover:bg-[#c20e0e] transition">INSTAGRAM</a>
+              </div>
+            </div>
+
+            <div class="relative group">
+              <button class="flex items-center gap-1 hover:text-white transition py-2 uppercase focus:outline-none">
+                <span>Networks</span>
+                <svg class="w-3 h-3 text-zinc-400 group-hover:text-white transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+              </button>
+              
+              <div class="absolute right-0 lg:left-0 top-full hidden group-hover:flex flex-col bg-[#121215] border border-[#27272a] w-52 py-2 shadow-2xl z-50">
+                <a href="https://nethead.top-notchnetwork.com" class="px-4 py-2.5 text-[11px] text-zinc-300 hover:text-white hover:bg-[#c20e0e] transition">
+                  NETHEAD
+                </a>
+                <a href="https://gaming.top-notchnetwork.com" class="px-4 py-2.5 text-[11px] text-zinc-300 hover:text-white hover:bg-[#c20e0e] transition">
+                  TOP-NOTCH GAMING
+                </a>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="flex items-center gap-3">
+            <a href="#contact" class="bg-[#c20e0e] hover:bg-[#9e0b0b] text-white font-black px-4 py-2.5 text-xs transition border border-[#d30000]">
+              CONTACT
+            </a>
+
+            <a href="/merch" class="bg-transparent hover:bg-[#c20e0e] text-[#c20e0e] hover:text-white font-black px-4 py-2.5 text-xs transition border border-[#c20e0e]">
+              MERCH
+            </a>
+
+            <a 
+              href="https://www.paypal.com/ncp/payment/Q85RKARU5A6WY" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              class="bg-transparent hover:bg-[#16a34a] text-[#16a34a] hover:text-white font-black px-4 py-2.5 text-xs transition border border-[#16a34a]"
+            >
+              MAKE A PAYMENT
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+    </nav>
+
+    <section class="relative max-w-7xl mx-auto px-6 pt-20 pb-12">
+      <span class="text-[#c20e0e] text-xs font-black tracking-widest block mb-4">// COMPANY PROFILE</span>
+      <h1 class="text-4xl sm:text-6xl md:text-7xl font-black tracking-tight text-[#e4e4e7] leading-tight mb-6">
+        ABOUT THE <br />
+        <span class="text-[#c20e0e]">TOP-NOTCH NETWORK</span>
+      </h1>
+
+      <p class="text-zinc-400 text-sm md:text-base normal-case max-w-2xl font-normal leading-relaxed">
+        Top-Notch Network was created for one reason: to build a high-utility network for service-driven leaders. We combine enterprise-grade technical consulting with an exclusive coalition of individuals committed to serving others.
+      </p>
+    </section>
+
+    <section class="bg-black py-10 px-6">
+      <div class="max-w-4xl mx-auto text-center">
+        <blockquote class="text-xl md:text-2xl font-black text-[#e4e4e7] tracking-wider leading-snug">
+          "TO LEAD IS TO SERVE. TO SERVE IS TO CREATE VALUE. WE EXIST FOR THOSE WHO PAY THE PRICE OF SELF-INTEREST TO BUILD A WORLD THAT LASTS."
+        </blockquote>
+      </div>
+    </section>
+
+    <section class="max-w-7xl mx-auto px-6 py-16">
+      <div class="grid md:grid-cols-2 gap-8 items-stretch">
+        
+        <div class="bg-[#121215] border border-[#27272a] p-8 hover:border-[#c20e0e]/60 transition-colors flex flex-col justify-between">
+          <div>
+            <span class="text-[#c20e0e] text-xs font-black tracking-widest block mb-4">// OUR ORIGIN</span>
+            <h2 class="text-xl font-black text-[#e4e4e7] mb-4">BUILT ON RESPONSIBILITY</h2>
+            <p class="text-zinc-400 text-sm normal-case leading-relaxed mb-4">
+              Wealth is fundamentally defined as the ability to create, provide, and deliver value to others—not just accumulating personal assets. True wealth goes beyond money, focusing on solving problems and creating a positive, lasting impact.
+            </p>
+            <p class="text-zinc-400 text-sm normal-case leading-relaxed">
+              We built Top-Notch Network to serve as both an operational partner and a sanctuary for leaders who understand that influence comes at the price of self-interest.
+            </p>
+          </div>
+        </div>
+
+        <div class="bg-[#121215] border border-[#27272a] p-8 hover:border-[#c20e0e]/60 transition-colors flex flex-col justify-between">
+          <div>
+            <span class="text-[#c20e0e] text-xs font-black tracking-widest block mb-4">// THE PHILOSOPHY</span>
+            <h2 class="text-xl font-black text-[#e4e4e7] mb-4">LEADERSHIP AS SERVICE</h2>
+            <p class="text-zinc-400 text-sm normal-case leading-relaxed mb-4">
+              True leadership is the ultimate act of service, whether found in the boardroom, the classroom, or the home.
+            </p>
+            <p class="text-zinc-400 text-sm normal-case leading-relaxed">
+              Wealth is measured not by what you keep, but by the value you pour into those in your care.
+            </p>
+          </div>
+          
+          <div class="text-xs font-black text-[#c20e0e] tracking-widest border-t border-[#27272a] pt-4 mt-6">
+            // TOP-NOTCH NETWORK LLC
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="max-w-7xl mx-auto px-6 pb-24">
+      <div class="mb-16">
+        <span class="text-[#c20e0e] text-xs font-black tracking-widest block mb-2">// IMPLEMENTATION FRAMEWORK</span>
+        <h2 class="text-3xl md:text-4xl font-black text-[#e4e4e7]">THE 3 PILLARS OF CONSULTING</h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        {companyPillars.map((p) => (
+          <div class="bg-[#121215] border border-[#27272a] p-8 hover:border-[#c20e0e]/60 transition-colors">
+            <div class="text-xs font-black text-[#c20e0e] mb-4">{p.code}</div>
+            <h3 class="text-xl font-black text-[#e4e4e7] mb-3">{p.title}</h3>
+            <p class="text-zinc-400 text-sm normal-case leading-relaxed">
+              {p.description}
+            </p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="max-w-7xl mx-auto px-6 pb-24">
+      <div class="mb-16">
+        <span class="text-[#c20e0e] text-xs font-black tracking-widest block mb-2">// HOW WE OPERATE</span>
+        <h2 class="text-3xl md:text-4xl font-black text-[#e4e4e7]">OUR STRUCTURAL EVOLUTION</h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        {companyMilestones.map((m) => (
+          <div class="bg-[#121215] border border-[#27272a] p-8 hover:border-[#c20e0e]/60 transition-colors">
+            <div class="text-xs font-black text-[#c20e0e] mb-4">{m.code}</div>
+            <h3 class="text-xl font-black text-[#e4e4e7] mb-3">{m.title}</h3>
+            <p class="text-zinc-400 text-sm normal-case leading-relaxed">
+              {m.description}
+            </p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section id="contact" class="border-t border-[#27272a] bg-[#121215] py-20 px-6">
+      <div class="max-w-4xl mx-auto text-center">
+        <h2 class="text-3xl md:text-5xl font-black text-[#e4e4e7] mb-6">
+          PARTNER WITH <span class="text-[#c20e0e]">TOP-NOTCH NETWORK</span>
+        </h2>
+        <p class="text-zinc-400 text-sm normal-case max-w-xl mx-auto mb-8">
+          Connect with us to explore strategic consulting or to integrate your organization into our trusted network.
+        </p>
+        <a href="mailto:contact@top-notchnetwork.com" class="inline-block bg-[#c20e0e] hover:bg-[#9e0b0b] text-white font-black px-10 py-5 text-xs tracking-widest border border-[#d30000] shadow-[0_0_25px_rgba(194,14,14,0.3)] transition">
+          PARTNER WITH US TODAY
+        </a>
+      </div>
+    </section>
+
+    <footer class="border-t border-[#27272a] py-8 text-center text-xs text-zinc-400">
+      <div class="max-w-7xl mx-auto px-6">
+        © 2026 TOP-NOTCH NETWORK LLC. ALL RIGHTS RESERVED.
+      </div>
+    </footer>
+
+  </body>
+</html>

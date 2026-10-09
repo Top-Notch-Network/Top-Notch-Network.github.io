@@ -1,0 +1,19 @@
+---
+// Redirect page: sends visitors to the TNN Store
+const target = "https://exclaim.gg/store/TNN-Store";
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>Redirecting to the TNN Store…</title>
+    <meta http-equiv="refresh" content={`0; url=${target}`} />
+    <link rel="canonical" href={target} />
+    <script is:inline define:vars={{ target }}>window.location.replace(target);</script>
+  </head>
+  <body>
+    <p>If you are not redirected automatically, click <a href={target}>this link</a>.</p>
+  </body>
+</html>

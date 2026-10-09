@@ -1,0 +1,19 @@
+---
+// Redirect page: sends visitors to PayPal
+const target = "https://www.paypal.com/ncp/payment/Q85RKARU5A6WY";
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>Redirecting to PayPal…</title>
+    <meta http-equiv="refresh" content={`0; url=${target}`} />
+    <link rel="canonical" href={target} />
+    <script is:inline define:vars={{ target }}>window.location.replace(target);</script>
+  </head>
+  <body>
+    <p>If you are not redirected automatically, click <a href={target}>this link</a>.</p>
+  </body>
+</html>
