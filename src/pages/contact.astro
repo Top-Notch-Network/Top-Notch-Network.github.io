@@ -2,12 +2,11 @@
 // src/pages/contact.astro
 import '../styles/global.css';
 
-// Cloudflare Turnstile site key. Swap via PUBLIC_TURNSTILE_SITE_KEY at build time.
-// Default is Cloudflare's public "always passes" TEST key — replace before going live.
-const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || "1x00000000000000000000AA";
+// Cloudflare Turnstile site key (public) for the "TNN Contact Form" widget
+// (top-notchnetwork.com, www.top-notchnetwork.com). Override via PUBLIC_TURNSTILE_SITE_KEY at build time.
+const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || "0x4AAAAAAFR7Q__ln03r_wbI";
 
-// Contact Worker endpoint. Swap via PUBLIC_CONTACT_ENDPOINT at build time.
-// PLACEHOLDER — the Worker is not deployed yet.
+// Contact Worker endpoint (tnn-contact on workers.dev). Override via PUBLIC_CONTACT_ENDPOINT at build time.
 const CONTACT_ENDPOINT = import.meta.env.PUBLIC_CONTACT_ENDPOINT || "https://tnn-contact.seth-m-berg.workers.dev/";
 
 const labelClass = "block text-xs font-black tracking-widest text-zinc-400 mb-2";
