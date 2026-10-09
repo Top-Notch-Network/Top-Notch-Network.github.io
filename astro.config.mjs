@@ -14,7 +14,7 @@ export default defineConfig({
   integrations: [
     sitemap({
       // Redirect-only pages don't belong in the sitemap.
-      filter: (page) => !/\/(merch|make-a-payment|media\/blog)\/?$/.test(page),
+      filter: (page) => !/\/(merch|make-a-payment|podcast|youtube|instagram|media\/(blog|podcast|youtube|instagram))\/?$/.test(page),
     }),
   ],
   vite: {

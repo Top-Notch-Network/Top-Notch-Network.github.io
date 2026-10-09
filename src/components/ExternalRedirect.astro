@@ -1,0 +1,20 @@
+---
+// Redirect page to an external URL (same pattern as src/pages/merch.astro).
+interface Props { target: string; title: string }
+const { target, title } = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>{title}</title>
+    <meta http-equiv="refresh" content={`0; url=${target}`} />
+    <link rel="canonical" href={target} />
+    <script is:inline define:vars={{ target }}>window.location.replace(target);</script>
+  </head>
+  <body>
+    <p>If you are not redirected automatically, click <a href={target}>this link</a>.</p>
+  </body>
+</html>
