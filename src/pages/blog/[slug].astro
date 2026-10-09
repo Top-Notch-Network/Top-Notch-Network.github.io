@@ -3,6 +3,7 @@ import { render } from 'astro:content';
 import { Image, getImage } from 'astro:assets';
 import BlogLayout from '../../layouts/BlogLayout.astro';
 import TagChip from '../../components/blog/TagChip.astro';
+import RssButton from '../../components/blog/RssButton.astro';
 import { getPosts, formatDate, isoDate, readingTime, SITE, type Post } from '../../lib/blog';
 
 export async function getStaticPaths() {
@@ -64,7 +65,10 @@ const jsonLd = {
         <span>{minutes} MIN READ</span>
         {draft && <span class="text-amber-400">· DRAFT (not published)</span>}
       </div>
-      {tags.length > 0 && <div class="flex flex-wrap gap-2 mt-5">{tags.map((t) => <TagChip tag={t} />)}</div>}
+      <div class="flex flex-wrap items-center justify-between gap-3 mt-5">
+        <div class="flex flex-wrap gap-2">{tags.map((t) => <TagChip tag={t} />)}</div>
+        <RssButton />
+      </div>
     </header>
 
     {cover && (
@@ -94,7 +98,10 @@ const jsonLd = {
           {newer && <a href={`/blog/${newer.id}/`} class="block border border-[#27272a] p-4 hover:border-[#c20e0e] transition sm:text-right"><span class="block text-[11px] font-black tracking-widest text-zinc-500 mb-1">NEWER →</span><span class="normal-case tracking-normal text-sm text-zinc-200">{newer.data.title}</span></a>}
         </nav>
       )}
-      <a href="/blog/" class="inline-block mt-8 text-xs font-black tracking-widest text-zinc-500 hover:text-white transition">← ALL POSTS</a>
+      <div class="mt-8 flex items-center justify-between gap-4">
+        <a href="/blog/" class="text-xs font-black tracking-widest text-zinc-500 hover:text-white transition">← ALL POSTS</a>
+        <RssButton />
+      </div>
     </footer>
   </article>
 

@@ -1,0 +1,27 @@
+---
+// Link-based tag filter (static pages, no JS). Shows "All" plus every tag that has posts; the current one is red with aria-current.
+import { allTags, type Post } from '../../lib/blog';
+interface Props { posts: Post[]; current?: string }  // current = tag name, or undefined for "All"
+const { posts, current } = Astro.props;
+const items = [
+  { label: 'All', href: '/blog/', count: posts.length, active: !current },
+  ...allTags(posts).map((t) => ({ label: t.tag, href: `/blog/tags/${t.slug}/`, count: t.count, active: t.tag === current })),
+];
+const base = 'inline-flex items-center gap-2 border px-3.5 py-2 text-[13px] normal-case tracking-normal whitespace-nowrap transition focus:outline-none focus-visible:ring-2 focus-visible:ring-[#c20e0e] focus-visible:ring-offset-2 focus-visible:ring-offset-black';
+---
+<nav aria-label="Filter posts by topic" class="max-w-7xl mx-auto px-6 pb-10">
+  <div class="border-y border-[#27272a] py-4 flex flex-col sm:flex-row sm:items-start gap-3">
+    <span class="text-[11px] font-black tracking-widest text-zinc-500 shrink-0 sm:pt-2.5">FILTER</span>
+    <ul class="flex flex-wrap gap-2" role="list">
+      {items.map((i) => (
+        <li>
+          <a href={i.href} aria-current={i.active ? 'page' : undefined}
+            class:list={[base, i.active ? 'bg-[#c20e0e] border-[#c20e0e] text-white shadow-[0_0_16px_rgba(194,14,14,0.3)]' : 'bg-[#121215] border-[#27272a] text-zinc-300 hover:border-[#c20e0e] hover:text-white']}>
+            {i.label !== 'All' && <span class:list={['font-bold', i.active ? 'text-white' : 'text-[#c20e0e]']} aria-hidden="true">#</span>}{i.label}
+            <span class:list={['tabular-nums text-xs', i.active ? 'text-white/80' : 'text-zinc-500']}><span class="sr-only">(</span>{i.count}<span class="sr-only"> {i.count === 1 ? 'post' : 'posts'})</span></span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</nav>

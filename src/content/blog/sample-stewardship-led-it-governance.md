@@ -2,7 +2,7 @@
 title: "Sample: Stewardship-Led IT Governance"
 date: 2026-10-09
 summary: "Why IT governance should start with the people a leader serves, and three questions to audit whether your systems are built to outlast you. (Sample post for the blog mockup.)"
-tags: ["Insight"]
+tags: ["Governance", "Leadership"]
 cover: ./images/stewardship-led-it-governance.png
 coverAlt: "Abstract diagram of connected systems with one highlighted red path"
 draft: false

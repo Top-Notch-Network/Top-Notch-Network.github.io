@@ -1,7 +1,8 @@
 ---
 import BlogLayout from '../../../layouts/BlogLayout.astro';
 import PostCard from '../../../components/blog/PostCard.astro';
-import TagChip from '../../../components/blog/TagChip.astro';
+import TagFilter from '../../../components/blog/TagFilter.astro';
+import RssButton from '../../../components/blog/RssButton.astro';
 import { getPosts, allTags, tagSlug } from '../../../lib/blog';
 
 export async function getStaticPaths() {
@@ -12,7 +13,7 @@ export async function getStaticPaths() {
   }));
 }
 const { tag, posts } = Astro.props;
-const tags = allTags(await getPosts());
+const all = await getPosts();
 ---
 <BlogLayout title={`Posts tagged “${tag}”`} description={`Top-Notch Network blog posts about ${tag}.`}>
   <section class="max-w-7xl mx-auto px-6 pt-16 md:pt-20 pb-8">
@@ -20,13 +21,12 @@ const tags = allTags(await getPosts());
     <h1 class="mt-6 text-3xl sm:text-5xl font-black tracking-tight text-[#e4e4e7] leading-tight">
       TOPIC: <span class="text-[#c20e0e] normal-case tracking-normal">#{tag}</span>
     </h1>
-    <p class="mt-3 text-[11px] font-bold tracking-widest text-zinc-500">{posts.length} {posts.length === 1 ? 'POST' : 'POSTS'}</p>
-  </section>
-  <nav aria-label="Browse by topic" class="max-w-7xl mx-auto px-6 pb-10">
-    <div class="border-y border-[#27272a] py-4 flex flex-wrap gap-2">
-      {tags.map((t) => <TagChip tag={t.tag} count={t.count} active={t.tag === tag} />)}
+    <div class="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-[11px] font-bold tracking-widest text-zinc-500">
+      <RssButton />
+      <span>{posts.length} {posts.length === 1 ? 'POST' : 'POSTS'}</span>
     </div>
-  </nav>
+  </section>
+  <TagFilter posts={all} current={tag} />
   <section class="max-w-7xl mx-auto px-6 pb-24 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
     {posts.map((p) => <PostCard post={p} />)}
   </section>

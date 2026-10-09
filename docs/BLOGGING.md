@@ -10,7 +10,8 @@ Posts are simple text files in `src/content/blog/`. Saving one to `main` publish
   - **Utility Optimization**: removing noise so people can focus on higher-level service.
   - **Legacy Architecture**: systems and governance that outlast the leader.
   - **Practical AI adoption**: where AI genuinely helps a team, and how to adopt it responsibly.
-- Tag articles like these `Insight`; use `Network Update` for TNN news and announcements.
+- Pick 1 to 3 subject tags that fit the post; use `Network Update` for TNN news and announcements.
+- NetHead and Top-Notch Gaming have their own sites and are not covered by this blog.
 
 ## Write and publish a post
 
@@ -22,9 +23,9 @@ Posts are simple text files in `src/content/blog/`. Saving one to `main` publish
    The name becomes the address: `top-notchnetwork.com/blog/leading-through-change/`.
 6. Paste the template and fill in the part between the `---` lines:
    - `title`, `date` (YYYY-MM-DD) and `summary` are required.
-   - `tags`: exactly one of these two, spelled exactly like this:
-     `["Insight"]` for articles and ideas, or `["Network Update"]` for news about TNN and the network.
-     Any other tag stops the build (see "If the build fails").
+   - `tags`: 1 to 3 from this list, spelled exactly like this, in quotes and square brackets:
+     `Leadership`, `Governance`, `Security`, `Cloud`, `AI`, `ITSM`, `Network Update`.
+     Example: `tags: ["Governance", "Leadership"]`. Any other tag stops the build (see "If the build fails").
    - `draft: true` keeps it hidden. Set `draft: false` when you're ready to publish.
 7. Write the post below the second `---`. Leave a blank line between paragraphs, start headings with `## `, bullets with `- `.
    Use the **Preview** tab to check it.
@@ -53,6 +54,19 @@ Posts without a cover use the standard TNN preview image.
 - `draft: false`: the post goes live on the next commit.
 - Files whose names start with `_` (like `_template.md`) are never published.
 
+## Add a new tag
+
+All tags live in one file, `src/lib/tags.ts`. To add one, open that file, click the pencil, add one line like
+`  'Strategy',` inside the list (keep the quotes and the comma), and commit. The tag can then be used in posts and
+gets its own filter chip once a post uses it.
+
+## Before launch
+
+Delete the sample posts (and the sample cover image):
+`src/content/blog/sample-stewardship-led-it-governance.md`, `src/content/blog/sample-practical-ai-adoption.md`,
+`src/content/blog/sample-network-update-blog-launch.md` and `src/content/blog/images/stewardship-led-it-governance.png`.
+Until the first real post is published, /blog shows a "No posts yet" message.
+
 ## Comments
 
 The blog has no comment section, and none is planned. Readers who want to respond can use the contact page (every post ends with a link to it).
@@ -66,8 +80,8 @@ If the Actions tab shows a red ✗, the site keeps showing the last good version
 2. Common fixes:
    - **title / summary missing or empty**: fill them in, inside quotes.
    - **date**: must be `YYYY-MM-DD`, e.g. `2026-11-03`.
-   - **tags**: `Tag must be exactly "Network Update" or "Insight"` means a typo in the tag; `tags: Required` means the line is missing.
-     Use `["Insight"]` or `["Network Update"]` (quotes, square brackets, same capital letters).
+   - **tags**: `Unknown tag. Allowed tags ...` means a typo or a tag that isn't in the list (check capitals, e.g. `AI`, `ITSM`).
+     `Add 1 to 3 tags`, `Use at most 3 tags` or `Each tag only once` mean what they say. `tags: Required` means the line is missing.
    - **cover image not found**: the file name and folder in `cover:` must match the uploaded file exactly (capital letters matter).
    - **YAML error**: usually a missing quote or a colon inside a title. Put the title in double quotes.
    - Make sure the file starts and the settings block ends with a line of exactly `---`.

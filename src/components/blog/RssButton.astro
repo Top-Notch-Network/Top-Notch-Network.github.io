@@ -1,0 +1,9 @@
+---
+interface Props { class?: string }
+const { class: cls } = Astro.props;
+---
+<a href="/blog/rss.xml" title="Subscribe via RSS" aria-label="RSS feed for the Top-Notch Network blog"
+  class:list={['inline-flex items-center gap-2 border border-[#c20e0e] text-[#c20e0e] hover:bg-[#c20e0e] hover:text-white px-3 py-1.5 text-[11px] font-black tracking-widest transition focus:outline-none focus-visible:ring-2 focus-visible:ring-[#c20e0e] focus-visible:ring-offset-2 focus-visible:ring-offset-black', cls]}>
+  <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.2 17.8a2.2 2.2 0 1 1-4.4 0 2.2 2.2 0 0 1 4.4 0ZM2 9.6v3a9.4 9.4 0 0 1 9.4 9.4h3A12.4 12.4 0 0 0 2 9.6Zm0-6v3A15.4 15.4 0 0 1 17.4 22h3A18.4 18.4 0 0 0 2 3.6Z"/></svg>
+  RSS
+</a>

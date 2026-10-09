@@ -2,9 +2,9 @@
 import { defineCollection } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
+import { BLOG_TAGS } from './lib/tags';
 
-// The only allowed tags. Anything else fails the build with this message.
-export const BLOG_TAGS = ['Network Update', 'Insight'] as const;
+const TAG_LIST = BLOG_TAGS.map((t) => `"${t}"`).join(', ');
 
 const blog = defineCollection({
   loader: glob({ base: './src/content/blog', pattern: '**/[^_]*.{md,mdx}' }),
@@ -15,9 +15,10 @@ const blog = defineCollection({
       updated: z.coerce.date().optional(),
       summary: z.string().min(1).max(300),
       tags: z
-        .array(z.enum(BLOG_TAGS, { message: 'Tag must be exactly "Network Update" or "Insight"' }))
-        .min(1, { message: 'Add one tag: "Network Update" or "Insight"' })
-        .max(2),
+        .array(z.enum(BLOG_TAGS, { message: `Unknown tag. Allowed tags (src/lib/tags.ts): ${TAG_LIST}` }))
+        .min(1, { message: 'Add 1 to 3 tags' })
+        .max(3, { message: 'Use at most 3 tags' })
+        .refine((t) => new Set(t).size === t.length, { message: 'Each tag only once' }),
       cover: image().optional(),
       coverAlt: z.string().optional(),
       draft: z.boolean().default(false),
