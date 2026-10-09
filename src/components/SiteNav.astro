@@ -1,102 +1,6 @@
 ---
-// src/pages/services.astro
-import '../styles/global.css';
-
-const serviceCategories = [
-  {
-    categoryTag: "// STEWARDSHIP & EXECUTIVE",
-    categoryTitle: "EXECUTIVE & LEADERSHIP CONSULTING",
-    items: [
-      {
-        code: "01 // STRAT",
-        title: "EXECUTIVE STEWARDSHIP & COACHING",
-        description: "One-on-one strategic advisory to optimize executive utility, eliminate organizational friction, and establish clear stewardship frameworks for leadership teams."
-      },
-      {
-        code: "02 // GOV",
-        title: "ORGANIZATIONAL GOVERNANCE ADVISORY",
-        description: "Consulting on decision-making architecture, accountability models, and leadership alignment to ensure sustained long-term impact."
-      }
-    ]
-  },
-  {
-    categoryTag: "// ENDPOINT & SYSTEMS",
-    categoryTitle: "HARDWARE & SYSTEMS CONSULTING",
-    items: [
-      {
-        code: "03 // HW",
-        title: "PC & WORKSTATION ARCHITECTURE ADVISORY",
-        description: "Expert consulting on enterprise hardware standards, workstation performance profiling, and procurement strategy tailored to operational needs."
-      },
-      {
-        code: "04 // MAINT",
-        title: "SYSTEMS MAINTENANCE & TROUBLESHOOTING STRATEGY",
-        description: "Advising IT teams on proactive maintenance protocols, rapid diagnostic frameworks, and hardware lifecycle management to minimize downtime."
-      }
-    ]
-  },
-  {
-    categoryTag: "// CLOUD & INFRASTRUCTURE",
-    categoryTitle: "CLOUD & ON-PREM ARCHITECTURE",
-    items: [
-      {
-        code: "05 // CLOUD",
-        title: "HYBRID CLOUD MIGRATION STRATEGY",
-        description: "Strategic guidance on workload positioning, multi-cloud strategy, and seamless transition planning from legacy on-prem to scalable cloud environments."
-      },
-      {
-        code: "06 // INFRA",
-        title: "HIGH-AVAILABILITY SYSTEM DESIGN",
-        description: "Architecture consulting for mission-critical systems, designing redundant, fault-tolerant network topology for zero planned downtime."
-      }
-    ]
-  },
-  {
-    categoryTag: "// SECURITY & PROCESS",
-    categoryTitle: "SECURITY & PROCESS GOVERNANCE",
-    items: [
-      {
-        code: "07 // AUDIT",
-        title: "IMPACT & SECURITY POSTURE AUDITING",
-        description: "Comprehensive review of infrastructure vulnerability, risk exposure, and governance compliance to harden defense and protect critical assets."
-      },
-      {
-        code: "08 // ITSM",
-        title: "ITIL & ITSM PROCESS ARCHITECTURE",
-        description: "Consulting on IT Service Management adoption, SLA structure definition, and operational workflow optimization to streamline IT delivery."
-      }
-    ]
-  },
-  {
-    categoryTag: "// AI & AUTOMATION",
-    categoryTitle: "AI & AUTOMATION CONSULTING",
-    items: [
-      {
-        code: "09 // AI",
-        title: "AI STEWARDSHIP & AUTOMATION STRATEGY",
-        description: "We help service-driven leaders adopt AI assistants like Grok, automate the noise out of their operations, and govern AI responsibly, so their time and systems go to the work that matters most."
-      },
-      {
-        code: "10 // AUTO",
-        title: "WORKFLOW AUTOMATION & INTEGRATION",
-        description: "Consulting on automation architecture, AI-to-system integration, and process redesign to eliminate repetitive friction and accelerate operational delivery."
-      }
-    ]
-  }
-];
+// Site navigation (same markup as the page-level navs). Used by the blog layout.
 ---
-
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/png" href="/topdraftinvisbackgroundfinal001.png?v=3" />
-    <link rel="apple-touch-icon" href="/topdraftinvisbackgroundfinal001.png?v=3" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="generator" content={Astro.generator} />
-    <title>Top-Notch Network | Consulting Services & Capabilities</title>
-  </head>
-  <body class="bg-black text-zinc-200 font-sans selection:bg-[#c20e0e] selection:text-white uppercase tracking-wider min-h-screen">
-    
     <!-- Navigation Bar -->
     <nav class="border-b border-[#27272a] bg-black/95 backdrop-blur sticky top-0 z-50">
       <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
@@ -117,7 +21,7 @@ const serviceCategories = [
           <!-- Text Menu Links -->
           <div class="hidden lg:flex items-center space-x-6 lg:space-x-8 text-xs font-bold tracking-widest text-zinc-400">
             <a href="/about" class="hover:text-white transition">About</a>
-            <a href="/services" class="text-white font-black transition">Services</a>
+            <a href="/services" class="hover:text-white transition">Services</a>
 
             <!-- Media Dropdown -->
             <div class="relative group">
@@ -128,6 +32,7 @@ const serviceCategories = [
                 </svg>
               </button>
               
+              <!-- Dropdown Menu Box -->
               <div class="absolute left-0 top-full hidden group-hover:flex flex-col bg-[#121215] border border-[#27272a] w-52 py-2 shadow-2xl z-50">
                 <a href="/blog" class="px-4 py-2.5 text-[11px] text-zinc-300 hover:text-white hover:bg-[#c20e0e] transition">BLOG</a>
                 <a href="/media/podcast" class="px-4 py-2.5 text-[11px] text-zinc-300 hover:text-white hover:bg-[#c20e0e] transition">PODCAST</a>
@@ -145,6 +50,7 @@ const serviceCategories = [
                 </svg>
               </button>
               
+              <!-- Dropdown Menu Box -->
               <div class="absolute right-0 lg:left-0 top-full hidden group-hover:flex flex-col bg-[#121215] border border-[#27272a] w-52 py-2 shadow-2xl z-50">
                 <a href="https://nethead.top-notchnetwork.com" class="px-4 py-2.5 text-[11px] text-zinc-300 hover:text-white hover:bg-[#c20e0e] transition">
                   NETHEAD
@@ -159,14 +65,17 @@ const serviceCategories = [
 
           <!-- Action Buttons Group -->
           <div class="hidden lg:flex items-center gap-3">
+            <!-- Solid Crimson Contact Button -->
             <a href="/contact" class="bg-[#c20e0e] hover:bg-[#9e0b0b] text-white font-black px-4 py-2.5 text-xs transition border border-[#d30000]">
               CONTACT
             </a>
 
+            <!-- Inverted Crimson Merch Button -->
             <a href="https://exclaim.gg/store/TNN-Store" target="_blank" rel="noopener noreferrer" class="bg-transparent hover:bg-[#c20e0e] text-[#c20e0e] hover:text-white font-black px-4 py-2.5 text-xs transition border border-[#c20e0e]">
               MERCH
             </a>
 
+            <!-- Inverted Emerald Green Payment Button (External PayPal Link) -->
             <a 
               href="https://www.paypal.com/ncp/payment/Q85RKARU5A6WY" 
               target="_blank" 
@@ -191,7 +100,7 @@ const serviceCategories = [
       <div id="mobile-menu" class="lg:hidden border-t border-[#27272a] bg-black max-h-[calc(100dvh-5rem)] overflow-y-auto" hidden>
         <div class="max-w-7xl mx-auto px-6 py-4 flex flex-col text-xs font-bold tracking-widest text-zinc-400">
           <a href="/about" class="py-3 hover:text-white transition">About</a>
-          <a href="/services" class="py-3 text-white font-black transition">Services</a>
+          <a href="/services" class="py-3 hover:text-white transition">Services</a>
 
           <button type="button" class="group flex items-center justify-between w-full py-3 uppercase tracking-widest hover:text-white transition focus:outline-none focus-visible:text-white" aria-expanded="false" aria-controls="mobile-media-menu" data-menu-toggle>
             <span>Media</span>
@@ -253,81 +162,3 @@ const serviceCategories = [
         })();
       </script>
     </nav>
-
-    <main class="w-full">
-
-      <!-- Hero Section -->
-      <section class="relative max-w-7xl mx-auto px-6 pt-20 pb-12">
-        <h1 class="text-4xl sm:text-6xl md:text-7xl font-black tracking-tight text-[#e4e4e7] leading-tight mb-6">
-          OUR TRUSTED <br />
-          <span class="text-[#c20e0e]">CONSULTING SERVICES</span>
-        </h1>
-
-        <p class="text-zinc-400 text-sm md:text-base normal-case max-w-2xl font-normal leading-relaxed">
-          Strategic advisory and framework design for organizations requiring high-availability technical architecture, executive stewardship, and hardened operational governance.
-        </p>
-      </section>
-
-      <!-- Categorized Two-Column Service Sections -->
-      <section class="max-w-7xl mx-auto px-6 pb-28">
-        {serviceCategories.map((cat, idx) => (
-          <div class={idx === 0 ? "mb-16" : "mt-24 mb-16"}>
-            <!-- Group Header -->
-            <div class="mb-6">
-              <span class="text-[#c20e0e] text-xs font-black tracking-widest block mb-2">
-                {cat.categoryTag}
-              </span>
-              <h2 class="text-[22px] md:text-2xl font-black text-[#e4e4e7] tracking-wider">
-                {cat.categoryTitle}
-              </h2>
-            </div>
-
-            <!-- Two Column Stacked Grid -->
-            <div class="grid md:grid-cols-2 gap-8 items-stretch">
-              {cat.items.map((item) => (
-                <a 
-                  href="/contact" 
-                  class="bg-[#121215] border border-[#27272a] p-8 hover:border-[#c20e0e]/60 transition-colors flex flex-col justify-between group block"
-                >
-                  <div>
-                    <div class="text-xs font-black text-[#c20e0e] mb-4">{item.code}</div>
-                    <h3 class="text-xl font-black text-[#e4e4e7] mb-3 group-hover:text-[#c20e0e] transition-colors">
-                      {item.title}
-                    </h3>
-                    <p class="text-zinc-400 text-sm normal-case leading-relaxed">
-                      {item.description}
-                    </p>
-                  </div>
-                </a>
-              ))}
-            </div>
-          </div>
-        ))}
-      </section>
-
-      <!-- Tactical CTA Strip (Matches Homepage CTA) -->
-      <section id="contact" class="border-t border-[#27272a] bg-[#121215] py-20 px-6">
-        <div class="max-w-4xl mx-auto text-center">
-          <h2 class="text-3xl md:text-5xl font-black text-[#e4e4e7] mb-6">
-            READY TO AUDIT YOUR <span class="text-[#c20e0e]">IMPACT?</span>
-          </h2>
-          <p class="text-zinc-400 text-sm normal-case max-w-xl mx-auto mb-8">
-            Get in touch directly to discuss your infrastructure, AI adoption, executive coaching, or joining our network of trusted organizations.
-          </p>
-          <a href="/contact" class="inline-block bg-[#c20e0e] hover:bg-[#9e0b0b] text-white font-black px-10 py-5 text-xs tracking-widest border border-[#d30000] shadow-[0_0_25px_rgba(194,14,14,0.3)] transition">
-            CONNECT WITH US TODAY
-          </a>
-        </div>
-      </section>
-
-    </main>
-
-    <!-- Footer -->
-    <footer class="border-t border-[#27272a] py-8 text-center text-xs text-zinc-400">
-      <div class="max-w-7xl mx-auto px-6">
-        © 2026 TOP-NOTCH NETWORK LLC. ALL RIGHTS RESERVED.
-      </div>
-    </footer>
-
-  </body>
-</html>

@@ -1,1 +1,6 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+/* Blog prose: no auto-inserted quote marks around blockquotes */
+.prose blockquote p:first-of-type::before,
+.prose blockquote p:last-of-type::after { content: none; }

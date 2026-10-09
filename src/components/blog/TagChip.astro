@@ -1,0 +1,15 @@
+---
+import { tagSlug } from '../../lib/blog';
+interface Props { tag: string; count?: number; active?: boolean; size?: 'sm' | 'md' }
+const { tag, count, active = false, size = 'sm' } = Astro.props;
+const pad = size === 'md' ? 'px-3.5 py-2 text-[13px]' : 'px-2.5 py-1 text-xs';
+---
+<a
+  href={`/blog/tags/${tagSlug(tag)}/`}
+  aria-current={active ? 'page' : undefined}
+  class:list={[
+    'inline-flex items-center gap-1.5 border normal-case tracking-normal transition focus:outline-none focus-visible:ring-2 focus-visible:ring-[#c20e0e] focus-visible:ring-offset-2 focus-visible:ring-offset-black',
+    pad,
+    active ? 'bg-[#c20e0e] border-[#c20e0e] text-white' : 'border-[#27272a] bg-[#121215] text-zinc-300 hover:border-[#c20e0e] hover:text-white',
+  ]}
+><span class="text-[#c20e0e] font-bold" class:list={[active && 'text-white']} aria-hidden="true">#</span>{tag}{count !== undefined && <span class:list={['tabular-nums', active ? 'text-white/80' : 'text-zinc-500']}>{count}</span>}</a>

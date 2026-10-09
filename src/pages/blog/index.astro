@@ -1,0 +1,61 @@
+---
+import BlogLayout from '../../layouts/BlogLayout.astro';
+import PostCard from '../../components/blog/PostCard.astro';
+import TagChip from '../../components/blog/TagChip.astro';
+import { getPosts, allTags, SITE } from '../../lib/blog';
+
+const posts = await getPosts();
+const tags = allTags(posts);
+const [latest, ...rest] = posts;
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Blog',
+  name: SITE.blogTitle,
+  description: SITE.blogDescription,
+  url: new URL('/blog/', SITE.url).href,
+  publisher: { '@type': 'Organization', name: SITE.name, url: SITE.url, logo: new URL(SITE.logo, SITE.url).href },
+  blogPost: posts.map((p) => ({ '@type': 'BlogPosting', headline: p.data.title, url: new URL(`/blog/${p.id}/`, SITE.url).href, datePublished: p.data.date.toISOString() })),
+};
+---
+<BlogLayout title="Blog" description={SITE.blogDescription} jsonLd={jsonLd}>
+  <section class="max-w-7xl mx-auto px-6 pt-16 md:pt-20 pb-10">
+    <span class="text-[#c20e0e] text-xs font-black tracking-widest block mb-4">// MEDIA / BLOG</span>
+    <h1 class="text-4xl sm:text-6xl font-black tracking-tight text-[#e4e4e7] leading-tight mb-5">
+      FIELD NOTES ON <br class="hidden sm:block" /><span class="text-[#c20e0e]">STEWARDSHIP</span>
+    </h1>
+    <p class="text-zinc-400 text-sm md:text-base normal-case tracking-normal max-w-2xl leading-relaxed">
+      Practical thinking on leadership, governance and the systems that sustain service. Written for leaders who measure
+      their wealth by the value they pour into those in their care.
+    </p>
+    <div class="mt-6 flex flex-wrap items-center gap-x-4 gap-y-2 text-[11px] font-bold tracking-widest text-zinc-500">
+      <a href="/blog/rss.xml" class="inline-flex items-center gap-1.5 hover:text-white transition focus:outline-none focus-visible:text-white">
+        <svg class="w-3.5 h-3.5 text-[#c20e0e]" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.2 17.8a2.2 2.2 0 1 1-4.4 0 2.2 2.2 0 0 1 4.4 0ZM2 9.6v3a9.4 9.4 0 0 1 9.4 9.4h3A12.4 12.4 0 0 0 2 9.6Zm0-6v3A15.4 15.4 0 0 1 17.4 22h3A18.4 18.4 0 0 0 2 3.6Z"/></svg>
+        RSS FEED
+      </a>
+      <span aria-hidden="true">·</span>
+      <span>{posts.length} {posts.length === 1 ? 'POST' : 'POSTS'}</span>
+    </div>
+  </section>
+
+  {tags.length > 0 && (
+    <nav aria-label="Browse by topic" class="max-w-7xl mx-auto px-6 pb-10">
+      <div class="border-y border-[#27272a] py-4 flex flex-col sm:flex-row sm:items-center gap-3">
+        <span class="text-[11px] font-black tracking-widest text-zinc-500 shrink-0">TOPICS</span>
+        <div class="flex flex-wrap gap-2">{tags.map((t) => <TagChip tag={t.tag} count={t.count} />)}</div>
+      </div>
+    </nav>
+  )}
+
+  <section class="max-w-7xl mx-auto px-6 pb-24" aria-label="Posts">
+    {posts.length === 0 ? (
+      <p class="normal-case tracking-normal text-zinc-400">No posts yet. Check back soon.</p>
+    ) : (
+      <div class="flex flex-col gap-8">
+        <PostCard post={latest} featured />
+        {rest.length > 0 && (
+          <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">{rest.map((p) => <PostCard post={p} />)}</div>
+        )}
+      </div>
+    )}
+  </section>
+</BlogLayout>

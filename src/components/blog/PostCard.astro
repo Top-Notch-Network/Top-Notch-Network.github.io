@@ -1,0 +1,34 @@
+---
+import { Image } from 'astro:assets';
+import { formatDate, isoDate, readingTime, type Post } from '../../lib/blog';
+import TagChip from './TagChip.astro';
+interface Props { post: Post; featured?: boolean }
+const { post, featured = false } = Astro.props;
+const { title, summary, date, tags, cover, coverAlt, draft } = post.data;
+const href = `/blog/${post.id}/`;
+const minutes = readingTime(post.body);
+---
+<article class:list={['group relative flex flex-col bg-[#121215] border border-[#27272a] hover:border-zinc-600 transition', featured && 'lg:grid lg:grid-cols-2']}>
+  {cover && (
+    <div class:list={['overflow-hidden border-b border-[#27272a]', featured && 'lg:border-b-0 lg:border-r']}>
+      <Image src={cover} alt={coverAlt ?? ''} widths={[480, 800, 1200]} sizes={featured ? '(min-width: 1024px) 600px, 100vw' : '(min-width: 1024px) 400px, (min-width: 768px) 50vw, 100vw'}
+        class="w-full h-full aspect-[1200/630] object-cover opacity-90 group-hover:opacity-100 group-hover:scale-[1.02] transition duration-500" loading={featured ? 'eager' : 'lazy'} />
+    </div>
+  )}
+  <div class:list={['flex flex-col flex-1 p-6', featured && 'md:p-8 lg:p-10 lg:justify-center']}>
+    <p class="flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] font-bold tracking-widest text-zinc-500 mb-3">
+      {featured && <span class="text-[#c20e0e]">// LATEST</span>}
+      <time datetime={isoDate(date)}>{formatDate(date)}</time>
+      <span aria-hidden="true">·</span>
+      <span>{minutes} min read</span>
+      {draft && <span class="text-amber-400">DRAFT</span>}
+    </p>
+    <h2 class:list={['font-black text-[#e4e4e7] leading-tight mb-3', featured ? 'text-2xl md:text-3xl' : 'text-xl']}>
+      <a href={href} class="after:absolute after:inset-0 focus:outline-none focus-visible:underline decoration-[#c20e0e] decoration-2 underline-offset-4 group-hover:text-white">{title}</a>
+    </h2>
+    <p class="normal-case tracking-normal text-sm md:text-[15px] leading-relaxed text-zinc-400 mb-5">{summary}</p>
+    <div class="mt-auto flex flex-wrap gap-2 relative z-10">
+      {tags.map((t) => <TagChip tag={t} />)}
+    </div>
+  </div>
+</article>

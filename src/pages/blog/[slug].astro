@@ -1,0 +1,106 @@
+---
+import { render } from 'astro:content';
+import { Image, getImage } from 'astro:assets';
+import BlogLayout from '../../layouts/BlogLayout.astro';
+import TagChip from '../../components/blog/TagChip.astro';
+import { getPosts, formatDate, isoDate, readingTime, SITE, type Post } from '../../lib/blog';
+
+export async function getStaticPaths() {
+  const posts = await getPosts();
+  return posts.map((post, i) => ({
+    params: { slug: post.id },
+    props: { post, newer: posts[i - 1], older: posts[i + 1] },
+  }));
+}
+interface Props { post: Post; newer?: Post; older?: Post }
+const { post, newer, older } = Astro.props;
+const { title, summary, date, updated, tags, cover, coverAlt, author, draft } = post.data;
+const { Content } = await render(post);
+const minutes = readingTime(post.body);
+const url = new URL(`/blog/${post.id}/`, SITE.url).href;
+
+// OG image: the cover (resized to 1200x630) if there is one, else the static fallback.
+const og = cover ? (await getImage({ src: cover, width: 1200, height: 630, fit: 'cover', format: 'jpg' })).src : SITE.ogDefault;
+const ogAbs = new URL(og, SITE.url).href;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: title,
+  description: summary,
+  datePublished: date.toISOString(),
+  dateModified: (updated ?? date).toISOString(),
+  mainEntityOfPage: { '@type': 'WebPage', '@id': url },
+  url,
+  image: [ogAbs],
+  keywords: tags.join(', '),
+  wordCount: (post.body ?? '').split(/\s+/).filter(Boolean).length,
+  inLanguage: 'en-US',
+  author: { '@type': 'Person', name: author, worksFor: { '@type': 'Organization', name: SITE.name, url: SITE.url } },
+  publisher: { '@type': 'Organization', name: SITE.name, url: SITE.url, logo: { '@type': 'ImageObject', url: new URL(SITE.logo, SITE.url).href } },
+};
+---
+<BlogLayout
+  title={title} description={summary} type="article" image={og} imageAlt={coverAlt ?? title}
+  publishedTime={date.toISOString()} modifiedTime={(updated ?? date).toISOString()} tags={tags} jsonLd={jsonLd} noindex={draft}
+>
+  <article class="px-6 pt-12 md:pt-16 pb-20">
+    <header class="max-w-3xl mx-auto">
+      <nav aria-label="Breadcrumb" class="text-[11px] font-black tracking-widest text-zinc-500 mb-6">
+        <a href="/blog/" class="text-[#c20e0e] hover:text-white transition">// BLOG</a>
+        {tags[0] && <><span class="mx-2" aria-hidden="true">/</span><span>{tags[0]}</span></>}
+      </nav>
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-[#e4e4e7] leading-[1.1] mb-5">{title}</h1>
+      <p class="normal-case tracking-normal text-zinc-400 text-base md:text-lg leading-relaxed mb-6">{summary}</p>
+      <div class="flex flex-wrap items-center gap-x-3 gap-y-2 text-[11px] font-bold tracking-widest text-zinc-500 pb-6 border-b border-[#27272a]">
+        <span class="flex items-center gap-2 text-zinc-300">
+          <img src="/topdraftinvisbackgroundfinal001.png" alt="" width="18" height="19" class="h-[18px] w-auto" />
+          {author.toUpperCase()}
+        </span>
+        <span aria-hidden="true">·</span>
+        <time datetime={isoDate(date)}>{formatDate(date)}</time>
+        {updated && <><span aria-hidden="true">·</span><span>UPDATED <time datetime={isoDate(updated)}>{formatDate(updated)}</time></span></>}
+        <span aria-hidden="true">·</span>
+        <span>{minutes} MIN READ</span>
+        {draft && <span class="text-amber-400">· DRAFT (not published)</span>}
+      </div>
+      {tags.length > 0 && <div class="flex flex-wrap gap-2 mt-5">{tags.map((t) => <TagChip tag={t} />)}</div>}
+    </header>
+
+    {cover && (
+      <figure class="max-w-5xl mx-auto mt-10">
+        <Image src={cover} alt={coverAlt ?? ''} widths={[640, 1024, 1600]} sizes="(min-width: 1024px) 1024px, 100vw" loading="eager" fetchpriority="high"
+          class="w-full aspect-[1200/630] object-cover border border-[#27272a]" />
+      </figure>
+    )}
+
+    <div class="max-w-[70ch] mx-auto mt-10 normal-case tracking-normal
+      prose prose-invert prose-zinc md:prose-lg
+      prose-headings:font-black prose-headings:tracking-tight prose-headings:text-[#e4e4e7]
+      prose-h2:mt-12 prose-h2:pt-8 prose-h2:border-t prose-h2:border-[#27272a]
+      prose-p:text-zinc-300 prose-li:text-zinc-300 prose-strong:text-white
+      prose-a:text-[#ff4d4d] prose-a:decoration-[#c20e0e] prose-a:underline-offset-4 hover:prose-a:text-white
+      prose-blockquote:border-l-[#c20e0e] prose-blockquote:text-zinc-200 prose-blockquote:font-normal prose-blockquote:not-italic
+      prose-li:marker:text-[#c20e0e] prose-hr:border-[#27272a]
+      prose-code:text-zinc-100 prose-code:before:content-none prose-code:after:content-none prose-pre:bg-[#121215] prose-pre:border prose-pre:border-[#27272a]
+      prose-img:border prose-img:border-[#27272a]">
+      <Content />
+    </div>
+
+    <footer class="max-w-[70ch] mx-auto mt-16">
+      <div class="bg-[#121215] border border-[#27272a] p-6 md:p-8">
+        <span class="text-[#c20e0e] text-xs font-black tracking-widest block mb-2">// WORK WITH TNN</span>
+        <p class="text-xl md:text-2xl font-black text-[#e4e4e7] mb-3">LET'S BUILD A <span class="text-[#c20e0e]">PARTNERSHIP</span></p>
+        <p class="normal-case tracking-normal text-sm text-zinc-400 leading-relaxed mb-5">If this sparked a question about your own systems or leadership, tell us about it.</p>
+        <a href="/contact" class="inline-block bg-[#c20e0e] hover:bg-[#9e0b0b] text-white font-black px-6 py-3 text-xs tracking-widest border border-[#d30000] transition">CONTACT US</a>
+      </div>
+      {(newer || older) && (
+        <nav aria-label="More posts" class="grid sm:grid-cols-2 gap-4 mt-8">
+          {older ? <a href={`/blog/${older.id}/`} class="block border border-[#27272a] p-4 hover:border-[#c20e0e] transition"><span class="block text-[11px] font-black tracking-widest text-zinc-500 mb-1">← OLDER</span><span class="normal-case tracking-normal text-sm text-zinc-200">{older.data.title}</span></a> : <span />}
+          {newer && <a href={`/blog/${newer.id}/`} class="block border border-[#27272a] p-4 hover:border-[#c20e0e] transition sm:text-right"><span class="block text-[11px] font-black tracking-widest text-zinc-500 mb-1">NEWER →</span><span class="normal-case tracking-normal text-sm text-zinc-200">{newer.data.title}</span></a>}
+        </nav>
+      )}
+      <a href="/blog/" class="inline-block mt-8 text-xs font-black tracking-widest text-zinc-500 hover:text-white transition">← ALL POSTS</a>
+    </footer>
+  </article>
+</BlogLayout>
