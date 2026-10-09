@@ -7,7 +7,8 @@
 title: "Your Post Title"            # required, keep it under ~70 characters
 date: 2026-10-09                    # required, publish date as YYYY-MM-DD
 summary: "One or two sentences that describe the post. Shown on the blog page, in search results and in link previews."  # required
-tags: ["Leadership", "Governance"]  # optional, 1-4 topics; reuse existing tag names
+# Topics to write about: Impact Auditing, Utility Optimization, Legacy Architecture, practical AI adoption
+tags: ["Insight"]                   # required: "Insight" or "Network Update" (exact spelling)
 # cover: ./images/my-cover.jpg      # optional, upload the image to src/content/blog/images/ first (1600x840 works well)
 # coverAlt: "Short description of the image for screen readers"
 draft: true                         # true = hidden on the live site; change to false when ready to publish

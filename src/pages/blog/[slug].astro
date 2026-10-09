@@ -44,7 +44,7 @@ const jsonLd = {
   title={title} description={summary} type="article" image={og} imageAlt={coverAlt ?? title}
   publishedTime={date.toISOString()} modifiedTime={(updated ?? date).toISOString()} tags={tags} jsonLd={jsonLd} noindex={draft}
 >
-  <article class="px-6 pt-12 md:pt-16 pb-20">
+  <article class="px-6 pt-12 md:pt-16 pb-16">
     <header class="max-w-3xl mx-auto">
       <nav aria-label="Breadcrumb" class="text-[11px] font-black tracking-widest text-zinc-500 mb-6">
         <a href="/blog/" class="text-[#c20e0e] hover:text-white transition">// BLOG</a>
@@ -87,13 +87,7 @@ const jsonLd = {
       <Content />
     </div>
 
-    <footer class="max-w-[70ch] mx-auto mt-16">
-      <div class="bg-[#121215] border border-[#27272a] p-6 md:p-8">
-        <span class="text-[#c20e0e] text-xs font-black tracking-widest block mb-2">// WORK WITH TNN</span>
-        <p class="text-xl md:text-2xl font-black text-[#e4e4e7] mb-3">LET'S BUILD A <span class="text-[#c20e0e]">PARTNERSHIP</span></p>
-        <p class="normal-case tracking-normal text-sm text-zinc-400 leading-relaxed mb-5">If this sparked a question about your own systems or leadership, tell us about it.</p>
-        <a href="/contact" class="inline-block bg-[#c20e0e] hover:bg-[#9e0b0b] text-white font-black px-6 py-3 text-xs tracking-widest border border-[#d30000] transition">CONTACT US</a>
-      </div>
+    <footer class="max-w-[70ch] mx-auto mt-12">
       {(newer || older) && (
         <nav aria-label="More posts" class="grid sm:grid-cols-2 gap-4 mt-8">
           {older ? <a href={`/blog/${older.id}/`} class="block border border-[#27272a] p-4 hover:border-[#c20e0e] transition"><span class="block text-[11px] font-black tracking-widest text-zinc-500 mb-1">← OLDER</span><span class="normal-case tracking-normal text-sm text-zinc-200">{older.data.title}</span></a> : <span />}
@@ -103,4 +97,19 @@ const jsonLd = {
       <a href="/blog/" class="inline-block mt-8 text-xs font-black tracking-widest text-zinc-500 hover:text-white transition">← ALL POSTS</a>
     </footer>
   </article>
+
+  <!-- Tactical CTA Strip (same styling as the site's bottom CTA; pitch from TNN Core Identity) -->
+  <section class="border-t border-[#27272a] bg-[#121215] py-20 px-6">
+    <div class="max-w-4xl mx-auto text-center">
+      <h2 class="text-3xl md:text-5xl font-black text-[#e4e4e7] mb-6">
+        WANT TO <span class="text-[#c20e0e]">WORK WITH US?</span>
+      </h2>
+      <p class="text-zinc-400 text-sm normal-case max-w-xl mx-auto mb-8">
+        What good is a mission if the leader lacks the systems to sustain it? Our firm was founded to elevate those who elevate the world. The more a leader's utility is optimized, the greater the impact they have on those in their care.
+      </p>
+      <a href="/contact" class="inline-block bg-[#c20e0e] hover:bg-[#9e0b0b] text-white font-black px-10 py-5 text-xs tracking-widest border border-[#d30000] shadow-[0_0_25px_rgba(194,14,14,0.3)] transition">
+        CONNECT WITH US TODAY
+      </a>
+    </div>
+  </section>
 </BlogLayout>
