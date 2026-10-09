@@ -3,7 +3,7 @@ title: "Sample: Practical AI Adoption Without Losing Control"
 date: 2026-10-02
 summary: "AI tools can give a team hours back, or quietly leak what it should protect. A short checklist for adopting AI with clear guardrails. (Sample post for the blog mockup.)"
 tags: ["AI", "Security"]
-draft: false
+draft: true
 ---
 
 > **Sample post.** This is placeholder content written for the blog mockup. Replace or delete it before launch.

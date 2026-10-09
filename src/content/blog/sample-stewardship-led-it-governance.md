@@ -5,7 +5,7 @@ summary: "Why IT governance should start with the people a leader serves, and th
 tags: ["Governance", "Leadership"]
 cover: ./images/stewardship-led-it-governance.png
 coverAlt: "Abstract diagram of connected systems with one highlighted red path"
-draft: false
+draft: true
 ---
 
 > **Sample post.** This is placeholder content written for the blog mockup. Replace or delete it before launch.

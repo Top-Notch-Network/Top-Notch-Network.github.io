@@ -3,7 +3,7 @@ title: "Sample: Network Update: Introducing the TNN Blog"
 date: 2026-09-25
 summary: "A short announcement-style post: what the blog will cover and how often we'll publish. (Sample post for the blog mockup.)"
 tags: ["Network Update"]
-draft: false
+draft: true
 ---
 
 > **Sample post.** This is placeholder content written for the blog mockup. Replace or delete it before launch.

@@ -51,7 +51,7 @@ Posts without a cover use the standard TNN preview image.
 ## Drafts
 
 - `draft: true`: the post is **not** published (it won't appear on the site, in the RSS feed or the sitemap). It only shows when a developer runs the site locally.
-- `draft: false`: the post goes live on the next commit.
+- `draft: false`: the post goes live on the next commit. This applies to any post, including the samples.
 - Files whose names start with `_` (like `_template.md`) are never published.
 
 ## Add a new tag
@@ -60,12 +60,14 @@ All tags live in one file, `src/lib/tags.ts`. To add one, open that file, click 
 `  'Strategy',` inside the list (keep the quotes and the comma), and commit. The tag can then be used in posts and
 gets its own filter chip once a post uses it.
 
-## Before launch
+## Sample posts (hidden examples)
 
-Delete the sample posts (and the sample cover image):
-`src/content/blog/sample-stewardship-led-it-governance.md`, `src/content/blog/sample-practical-ai-adoption.md`,
-`src/content/blog/sample-network-update-blog-launch.md` and `src/content/blog/images/stewardship-led-it-governance.png`.
-Until the first real post is published, /blog shows a "No posts yet" message.
+The three files starting with `sample-` in `src/content/blog/` are **hidden drafts** (`draft: true`). They don't appear on the
+live site, in the RSS feed or in the sitemap, so /blog shows "No posts yet" until the first real post is published.
+Keep them as worked examples to copy from. Setting `draft: false` on one would publish it, so don't do that with the
+samples; delete them instead once you no longer need them:
+`sample-stewardship-led-it-governance.md`, `sample-practical-ai-adoption.md`, `sample-network-update-blog-launch.md`
+and the image `images/stewardship-led-it-governance.png`.
 
 ## Comments
 
