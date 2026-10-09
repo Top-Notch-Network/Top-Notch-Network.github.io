@@ -53,7 +53,7 @@ const companyPillars = [
     <nav class="border-b border-[#27272a] bg-black/95 backdrop-blur sticky top-0 z-50">
       <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
         
-        <a href="/" class="font-black text-xl md:text-2xl tracking-widest text-[#e4e4e7] flex items-center gap-3 shrink-0 whitespace-nowrap">
+        <a href="/" class="font-black text-base min-[400px]:text-lg sm:text-xl md:text-2xl tracking-widest text-[#e4e4e7] flex items-center gap-2 sm:gap-3 shrink-0 whitespace-nowrap">
           <img 
             src="/topdraftinvisbackgroundfinal001.png" 
             alt="TNN Emblem" 
@@ -64,7 +64,7 @@ const companyPillars = [
 
         <div class="flex items-center gap-6 lg:gap-8">
           
-          <div class="hidden md:flex items-center space-x-6 lg:space-x-8 text-xs font-bold tracking-widest text-zinc-400">
+          <div class="hidden lg:flex items-center space-x-6 lg:space-x-8 text-xs font-bold tracking-widest text-zinc-400">
             <a href="/about" class="text-white font-black transition">About</a>
             <a href="/services" class="hover:text-white transition">Services</a>
 
@@ -104,7 +104,7 @@ const companyPillars = [
 
           </div>
 
-          <div class="flex items-center gap-3">
+          <div class="hidden lg:flex items-center gap-3">
             <a href="#contact" class="bg-[#c20e0e] hover:bg-[#9e0b0b] text-white font-black px-4 py-2.5 text-xs transition border border-[#d30000]">
               CONTACT
             </a>
@@ -123,9 +123,81 @@ const companyPillars = [
             </a>
           </div>
 
+
+          <!-- Mobile Menu Toggle (below lg only) -->
+          <button type="button" id="mobile-menu-toggle" class="lg:hidden inline-flex items-center justify-center w-10 h-10 -mr-2 text-zinc-300 hover:text-white transition focus:outline-none focus-visible:ring-2 focus-visible:ring-[#c20e0e]" aria-controls="mobile-menu" aria-expanded="false" aria-label="Open menu">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+          </button>
+
         </div>
 
       </div>
+
+      <!-- Mobile Menu Panel (below lg only) -->
+      <div id="mobile-menu" class="lg:hidden border-t border-[#27272a] bg-black max-h-[calc(100dvh-5rem)] overflow-y-auto" hidden>
+        <div class="max-w-7xl mx-auto px-6 py-4 flex flex-col text-xs font-bold tracking-widest text-zinc-400">
+          <a href="/about" class="py-3 text-white font-black transition">About</a>
+          <a href="/services" class="py-3 hover:text-white transition">Services</a>
+
+          <button type="button" class="group flex items-center justify-between w-full py-3 uppercase tracking-widest hover:text-white transition focus:outline-none focus-visible:text-white" aria-expanded="false" aria-controls="mobile-media-menu" data-menu-toggle>
+            <span>Media</span>
+            <svg class="w-3 h-3 text-zinc-400 group-hover:text-white group-aria-expanded:text-white transition-transform group-aria-expanded:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+          </button>
+          <div id="mobile-media-menu" class="flex flex-col bg-[#121215] border border-[#27272a] py-2 mb-2" hidden>
+            <a href="/media/blog" class="block px-4 py-3 text-[11px] text-zinc-300 hover:text-white hover:bg-[#c20e0e] transition">BLOG</a>
+            <a href="/media/podcast" class="block px-4 py-3 text-[11px] text-zinc-300 hover:text-white hover:bg-[#c20e0e] transition">PODCAST</a>
+            <a href="/media/youtube" class="block px-4 py-3 text-[11px] text-zinc-300 hover:text-white hover:bg-[#c20e0e] transition">YOUTUBE</a>
+            <a href="/media/instagram" class="block px-4 py-3 text-[11px] text-zinc-300 hover:text-white hover:bg-[#c20e0e] transition">INSTAGRAM</a>
+          </div>
+
+          <button type="button" class="group flex items-center justify-between w-full py-3 uppercase tracking-widest hover:text-white transition focus:outline-none focus-visible:text-white" aria-expanded="false" aria-controls="mobile-networks-menu" data-menu-toggle>
+            <span>Networks</span>
+            <svg class="w-3 h-3 text-zinc-400 group-hover:text-white group-aria-expanded:text-white transition-transform group-aria-expanded:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+          </button>
+          <div id="mobile-networks-menu" class="flex flex-col bg-[#121215] border border-[#27272a] py-2 mb-2" hidden>
+            <a href="https://nethead.top-notchnetwork.com" class="block px-4 py-3 text-[11px] text-zinc-300 hover:text-white hover:bg-[#c20e0e] transition">NETHEAD</a>
+            <a href="https://gaming.top-notchnetwork.com" class="block px-4 py-3 text-[11px] text-zinc-300 hover:text-white hover:bg-[#c20e0e] transition">TOP-NOTCH GAMING</a>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-4 mt-2 border-t border-[#27272a]">
+            <a href="#contact" class="bg-[#c20e0e] hover:bg-[#9e0b0b] text-white font-black px-4 py-3 text-xs text-center transition border border-[#d30000]" data-menu-close>
+              CONTACT
+            </a>
+            <a href="https://exclaim.gg/store/TNN-Store" target="_blank" rel="noopener noreferrer" class="bg-transparent hover:bg-[#c20e0e] text-[#c20e0e] hover:text-white font-black px-4 py-3 text-xs text-center transition border border-[#c20e0e]">
+              MERCH
+            </a>
+            <a href="https://www.paypal.com/ncp/payment/Q85RKARU5A6WY" target="_blank" rel="noopener noreferrer" class="bg-transparent hover:bg-[#16a34a] text-[#16a34a] hover:text-white font-black px-4 py-3 text-xs text-center transition border border-[#16a34a]">
+              MAKE A PAYMENT
+            </a>
+          </div>
+        </div>
+      </div>
+      <script is:inline>
+        (() => {
+          const menu = document.getElementById('mobile-menu');
+          const toggle = document.getElementById('mobile-menu-toggle');
+          if (!menu || !toggle) return;
+          const setOpen = (open) => {
+            menu.hidden = !open;
+            toggle.setAttribute('aria-expanded', String(open));
+            toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+          };
+          toggle.addEventListener('click', () => setOpen(menu.hidden));
+          menu.querySelectorAll('[data-menu-toggle]').forEach((btn) => {
+            btn.addEventListener('click', () => {
+              const sub = document.getElementById(btn.getAttribute('aria-controls'));
+              const open = sub.hidden;
+              sub.hidden = !open;
+              btn.setAttribute('aria-expanded', String(open));
+            });
+          });
+          menu.querySelectorAll('[data-menu-close]').forEach((a) => a.addEventListener('click', () => setOpen(false)));
+          document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !menu.hidden) { setOpen(false); toggle.focus(); }
+          });
+          window.matchMedia('(min-width: 64rem)').addEventListener('change', (e) => { if (e.matches) setOpen(false); });
+        })();
+      </script>
     </nav>
 
     <section class="relative max-w-7xl mx-auto px-6 pt-20 pb-12">
