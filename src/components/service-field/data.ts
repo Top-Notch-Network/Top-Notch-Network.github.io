@@ -10,6 +10,7 @@ const ICONS = {
   hardware: "M6 6h12v12H6zM9 9h6v6H9zM9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4",
   cloud: "M7 18a5 5 0 1 1 .9-9.9A6 6 0 0 1 19 10a4 4 0 0 1-1 7.9V18H7Z",
   shield: "M12 3 4 6v6c0 4.5 3.4 8.3 8 9 4.6-.7 8-4.5 8-9V6l-8-3Zm-3 9 2 2 4-4",
+  ai: "M12 3l1.9 4.6L18.5 9.5l-4.6 1.9L12 16l-1.9-4.6L5.5 9.5l4.6-1.9L12 3ZM19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8L19 15Z",
   help: "M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Zm-2.5-11.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.6v.6M12 17h.01",
 };
 
@@ -29,6 +30,10 @@ export const serviceGroups: ServiceGroup[] = [
   { id: "sec", label: "Security & Process Governance", tag: "04", icon: ICONS.shield, items: [
     { value: "Impact & Security Posture Auditing", label: "Impact & security posture auditing", blurb: "Review of vulnerability, risk exposure and governance compliance." },
     { value: "ITIL & ITSM Process Architecture", label: "ITIL & ITSM process architecture", blurb: "IT service management adoption, SLA structure and workflow optimization." },
+  ]},
+  { id: "ai", label: "AI & Automation", tag: "05", icon: ICONS.ai, items: [
+    { value: "AI Stewardship & Automation Strategy", label: "AI stewardship & automation strategy", blurb: "Adopt AI assistants like Grok, automate the noise and govern AI responsibly." },
+    { value: "Workflow Automation & Integration", label: "Workflow automation & integration", blurb: "Automation architecture, AI-to-system integration and process redesign." },
   ]},
 ];
 
