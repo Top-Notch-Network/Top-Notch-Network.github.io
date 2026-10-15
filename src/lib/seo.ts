@@ -10,7 +10,7 @@ export const SEO = {
     description: 'IT and security checkups, website rebuilds, Google listings, business email, AI setup, and stewardship consulting for businesses anywhere.', // CMO
   },
   contact: {
-    description: 'Contact Top-Notch Network. Call (602) 492-1147 or email contact@top-notchnetwork.com to book a 15-minute review of your setup.', // CMO
+    description: 'Contact Top-Notch Network. Email contact@top-notchnetwork.com or use the form to book a 15-minute review of your setup.', // CMO
   },
   blog: {
     description: 'Practical IT, security, and leadership insights from Top-Notch Network. Plain-language tips to help businesses and leaders serve people well.', // CMO
