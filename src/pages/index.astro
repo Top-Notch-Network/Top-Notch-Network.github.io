@@ -1,4 +1,6 @@
 ---
+import SeoMeta from '../components/SeoMeta.astro';
+import { SEO, websiteLd, organizationLd } from '../lib/seo';
 // src/pages/index.astro
 import '../styles/global.css';
 
@@ -56,11 +58,13 @@ const services = [
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" type="image/png" href="/topdraftinvisbackgroundfinal001.png?v=3" />
-    <link rel="apple-touch-icon" href="/topdraftinvisbackgroundfinal001.png?v=3" />
+    <link rel="icon" type="image/png" sizes="48x48" href="/icon-48.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
-    <title>Top-Notch Network | Elevating Those Who Elevate The World</title>
+    <title>{SEO.home.title}</title>
+    <SeoMeta title={SEO.home.title} description={SEO.home.description} jsonLd={[websiteLd, organizationLd]} />
   </head>
   <body class="bg-black text-zinc-200 font-sans selection:bg-[#c20e0e] selection:text-white uppercase tracking-wider min-h-screen">
     

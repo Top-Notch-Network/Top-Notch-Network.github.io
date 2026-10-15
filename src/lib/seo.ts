@@ -1,0 +1,53 @@
+// Page meta copy. Approved CMO copy is marked; others are interim defaults (no CMO copy yet).
+import { SITE } from './blog';
+
+export const SEO = {
+  home: {
+    title: 'Top-Notch Network | IT, AI & Leadership Consulting', // CMO (revised)
+    description: 'Top-Notch Network helps Phoenix businesses and leaders with IT, security, websites, and AI. Elevating those who elevate the world. Book a 15-minute review.', // CMO
+  },
+  services: {
+    description: 'IT and security checkups, website rebuilds, Google listings, business email, AI setup, and stewardship consulting for Phoenix-area businesses.', // CMO
+  },
+  contact: {
+    description: 'Contact Top-Notch Network in Phoenix, AZ. Call (602) 492-1147 or email contact@top-notchnetwork.com to book a 15-minute review of your setup.', // CMO
+  },
+  blog: {
+    description: 'Practical IT, security, and leadership insights from Top-Notch Network. Plain-language tips to help Phoenix small businesses serve people well.', // CMO
+  },
+  about: {
+    // DEFAULT, pending CMO copy
+    description: 'About Top-Notch Network: a Phoenix-based consulting firm focused on stewardship, leadership and dependable technology for service-driven organizations.',
+  },
+  default: {
+    // DEFAULT, pending CMO copy
+    description: 'Top-Notch Network: stewardship, leadership and IT consulting for service-driven organizations in Phoenix and beyond.',
+  },
+};
+
+export const LOGO_SQUARE = '/tnn-logo-square.png'; // 256x256, generated from the N favicon
+
+export const organizationLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  '@id': `${SITE.url}/#organization`,
+  name: SITE.name,
+  alternateName: 'TNN',
+  url: `${SITE.url}/`,
+  logo: `${SITE.url}${LOGO_SQUARE}`,
+  sameAs: [
+    'https://www.youtube.com/@Top-NotchNetwork',
+    'https://open.spotify.com/show/3ZTzWnAOyxxd4Itx6fjsTR',
+    'https://www.instagram.com/top_notch_network',
+  ],
+};
+
+export const websiteLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  '@id': `${SITE.url}/#website`,
+  name: SITE.name,
+  alternateName: 'TNN',
+  url: `${SITE.url}/`,
+  publisher: { '@id': `${SITE.url}/#organization` },
+};

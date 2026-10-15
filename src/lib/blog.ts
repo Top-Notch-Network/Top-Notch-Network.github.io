@@ -8,7 +8,7 @@ export const SITE = {
   url: 'https://top-notchnetwork.com',
   blogTitle: 'Top-Notch Network Blog',
   blogDescription:
-    'Field notes on stewardship, leadership and the systems that sustain service: from Top-Notch Network.',
+    'Practical IT, security, and leadership insights from Top-Notch Network. Plain-language tips to help Phoenix small businesses serve people well.', // CMO
   ogDefault: '/og-default.png',
   logo: '/topdraftinvisbackgroundfinal001.png',
 };
