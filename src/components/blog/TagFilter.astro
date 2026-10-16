@@ -7,7 +7,7 @@ const items = [
   { label: 'All', href: '/blog/', count: posts.length, active: !current },
   ...allTags(posts).map((t) => ({ label: t.tag, href: `/blog/tags/${t.slug}/`, count: t.count, active: t.tag === current })),
 ];
-const base = 'inline-flex items-center gap-2 border px-3.5 py-2 text-[13px] normal-case tracking-normal whitespace-nowrap transition focus:outline-none focus-visible:ring-2 focus-visible:ring-[#c20e0e] focus-visible:ring-offset-2 focus-visible:ring-offset-black';
+const base = 'relative before:absolute before:inset-x-0 before:-inset-y-1 inline-flex items-center gap-2 border px-3.5 py-2 text-[13px] normal-case tracking-normal whitespace-nowrap transition focus:outline-none focus-visible:ring-2 focus-visible:ring-[#c20e0e] focus-visible:ring-offset-2 focus-visible:ring-offset-black';
 ---
 <nav aria-label="Filter posts by topic" class="max-w-7xl mx-auto px-6 pb-10">
   <div class="border-y border-[#27272a] py-4 flex flex-col sm:flex-row sm:items-start gap-3">

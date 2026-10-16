@@ -65,7 +65,7 @@ const steps = [
       <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
         
         <!-- Brand Title & Emblem Logo -->
-        <a href="/" class="font-black text-base min-[400px]:text-lg sm:text-xl md:text-2xl tracking-widest text-[#e4e4e7] flex items-center gap-2 sm:gap-3 shrink-0 whitespace-nowrap">
+        <a href="/" class="font-black text-base min-[400px]:text-lg sm:text-xl md:text-2xl tracking-widest lg:tracking-wider min-[72rem]:tracking-widest text-[#e4e4e7] flex items-center gap-2 sm:gap-3 shrink-0 whitespace-nowrap relative before:absolute before:inset-x-0 before:-inset-y-2">
           <img 
             src="/topdraftinvisbackgroundfinal001.png" 
             alt="TNN Emblem" 
@@ -75,10 +75,10 @@ const steps = [
         </a>
 
         <!-- Right Side Nav Elements -->
-        <div class="flex items-center gap-6 lg:gap-8">
+        <div class="flex items-center gap-6 lg:gap-4 min-[72rem]:gap-8">
           
           <!-- Text Menu Links -->
-          <div class="hidden min-[72rem]:flex items-center space-x-6 lg:space-x-8 text-xs font-bold tracking-widest text-zinc-400">
+          <div class="hidden lg:flex items-center space-x-6 lg:space-x-4 min-[72rem]:space-x-8 text-xs font-bold tracking-widest lg:tracking-wider min-[72rem]:tracking-widest text-zinc-400">
             <a href="/about" class="hover:text-white transition">About</a>
             <a href="/services" class="hover:text-white transition">Services</a>
 
@@ -123,14 +123,14 @@ const steps = [
           </div>
 
           <!-- Action Buttons Group -->
-          <div class="hidden min-[72rem]:flex items-center gap-3">
+          <div class="hidden lg:flex items-center gap-3 lg:gap-2 min-[72rem]:gap-3">
             <!-- Solid Crimson Contact Button -->
-            <a href="/contact" class="bg-[#c20e0e] hover:bg-[#9e0b0b] text-white font-black px-4 py-2.5 text-xs transition border border-[#d30000]">
+            <a href="/contact" class="bg-[#c20e0e] hover:bg-[#9e0b0b] text-white font-black px-4 lg:px-3 min-[72rem]:px-4 py-2.5 text-xs whitespace-nowrap transition border border-[#d30000]">
               CONTACT
             </a>
 
             <!-- Inverted Crimson Merch Button -->
-            <a href="https://exclaim.gg/store/TNN-Store" target="_blank" rel="noopener noreferrer" class="bg-transparent hover:bg-[#c20e0e] text-[#c20e0e] hover:text-white font-black px-4 py-2.5 text-xs transition border border-[#c20e0e]">
+            <a href="https://exclaim.gg/store/TNN-Store" target="_blank" rel="noopener noreferrer" class="bg-transparent hover:bg-[#c20e0e] text-[#c20e0e] hover:text-white font-black px-4 lg:px-3 min-[72rem]:px-4 py-2.5 text-xs whitespace-nowrap transition border border-[#c20e0e]">
               MERCH
             </a>
 
@@ -139,15 +139,15 @@ const steps = [
               href="https://www.paypal.com/ncp/payment/Q85RKARU5A6WY" 
               target="_blank" 
               rel="noopener noreferrer" 
-              class="bg-transparent hover:bg-[#16a34a] text-[#16a34a] hover:text-white font-black px-4 py-2.5 text-xs transition border border-[#16a34a]"
+              class="bg-transparent hover:bg-[#16a34a] text-[#16a34a] hover:text-white font-black px-4 lg:px-3 min-[72rem]:px-4 py-2.5 text-xs whitespace-nowrap transition border border-[#16a34a]"
             >
               MAKE A PAYMENT
             </a>
           </div>
 
 
-          <!-- Mobile Menu Toggle (below 72rem / 1152px) -->
-          <button type="button" id="mobile-menu-toggle" class="min-[72rem]:hidden inline-flex items-center justify-center w-10 h-10 -mr-2 text-zinc-300 hover:text-white transition focus:outline-none focus-visible:ring-2 focus-visible:ring-[#c20e0e]" aria-controls="mobile-menu" aria-expanded="false" aria-label="Open menu">
+          <!-- Mobile Menu Toggle (below lg / 1024px) -->
+          <button type="button" id="mobile-menu-toggle" class="lg:hidden inline-flex items-center justify-center w-10 h-10 -mr-2 text-zinc-300 hover:text-white transition focus:outline-none focus-visible:ring-2 focus-visible:ring-[#c20e0e]" aria-controls="mobile-menu" aria-expanded="false" aria-label="Open menu">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
           </button>
 
@@ -155,8 +155,8 @@ const steps = [
 
       </div>
 
-      <!-- Mobile Menu Panel (below 72rem / 1152px) -->
-      <div id="mobile-menu" class="min-[72rem]:hidden border-t border-[#27272a] bg-black max-h-[calc(100dvh-5rem)] overflow-y-auto" hidden>
+      <!-- Mobile Menu Panel (below lg / 1024px) -->
+      <div id="mobile-menu" class="lg:hidden border-t border-[#27272a] bg-black max-h-[calc(100dvh-5rem)] overflow-y-auto" hidden>
         <div class="max-w-7xl mx-auto px-6 py-4 flex flex-col text-xs font-bold tracking-widest text-zinc-400">
           <a href="/about" class="py-3 hover:text-white transition">About</a>
           <a href="/services" class="py-3 hover:text-white transition">Services</a>
@@ -217,7 +217,7 @@ const steps = [
           document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && !menu.hidden) { setOpen(false); toggle.focus(); }
           });
-          window.matchMedia('(min-width: 72rem)').addEventListener('change', (e) => { if (e.matches) setOpen(false); });
+          window.matchMedia('(min-width: 64rem)').addEventListener('change', (e) => { if (e.matches) setOpen(false); });
         })();
       </script>
     </nav>
@@ -294,7 +294,7 @@ const steps = [
                 <legend class={labelClass}>Preferred Method of Contact <span class="text-[#c20e0e]">*</span></legend>
                 <div class="flex flex-col sm:flex-row gap-3 sm:gap-6">
                   {contactMethods.map((m, i) => (
-                    <label class="flex items-center gap-3 text-xs font-bold tracking-widest text-zinc-300 cursor-pointer">
+                    <label class="relative before:absolute before:inset-x-0 before:-inset-y-1.5 flex items-center gap-3 text-xs font-bold tracking-widest text-zinc-300 cursor-pointer">
                       <input type="radio" name="preferred_contact" value={m} required checked={i === 0} class="w-4 h-4 accent-[#c20e0e]" />
                       {m}
                     </label>
@@ -317,6 +317,7 @@ const steps = [
 
               <!-- Cloudflare Turnstile -->
               <div class="cf-turnstile" data-sitekey={TURNSTILE_SITE_KEY} data-theme="dark" data-response-field-name="cf-turnstile-response"></div>
+              <script is:inline>if (window.innerWidth < 375) document.currentScript.previousElementSibling.setAttribute('data-size', 'compact');</script>
 
               <div id="form-error" class="hidden border border-[#c20e0e] bg-[#c20e0e]/10 p-4 text-xs font-bold tracking-widest text-[#e4e4e7]" role="alert" aria-live="assertive">
                 <span class="text-[#c20e0e] font-black block mb-1">// TRANSMISSION FAILED</span>
