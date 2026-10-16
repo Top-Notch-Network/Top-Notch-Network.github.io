@@ -65,7 +65,7 @@ const steps = [
       <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
         
         <!-- Brand Title & Emblem Logo -->
-        <a href="/" class="font-black text-base min-[400px]:text-lg sm:text-xl md:text-2xl tracking-widest lg:tracking-wider min-[72rem]:tracking-widest text-[#e4e4e7] flex items-center gap-2 sm:gap-3 shrink-0 whitespace-nowrap">
+        <a href="/" class="font-black text-base min-[400px]:text-lg sm:text-xl md:text-2xl tracking-widest lg:tracking-wider min-[72rem]:tracking-widest text-[#e4e4e7] flex items-center gap-2 sm:gap-3 shrink-0 whitespace-nowrap relative before:absolute before:inset-x-0 before:-inset-y-2">
           <img 
             src="/topdraftinvisbackgroundfinal001.png" 
             alt="TNN Emblem" 
@@ -294,7 +294,7 @@ const steps = [
                 <legend class={labelClass}>Preferred Method of Contact <span class="text-[#c20e0e]">*</span></legend>
                 <div class="flex flex-col sm:flex-row gap-3 sm:gap-6">
                   {contactMethods.map((m, i) => (
-                    <label class="flex items-center gap-3 text-xs font-bold tracking-widest text-zinc-300 cursor-pointer">
+                    <label class="relative before:absolute before:inset-x-0 before:-inset-y-1.5 flex items-center gap-3 text-xs font-bold tracking-widest text-zinc-300 cursor-pointer">
                       <input type="radio" name="preferred_contact" value={m} required checked={i === 0} class="w-4 h-4 accent-[#c20e0e]" />
                       {m}
                     </label>
@@ -317,6 +317,7 @@ const steps = [
 
               <!-- Cloudflare Turnstile -->
               <div class="cf-turnstile" data-sitekey={TURNSTILE_SITE_KEY} data-theme="dark" data-response-field-name="cf-turnstile-response"></div>
+              <script is:inline>if (window.innerWidth < 375) document.currentScript.previousElementSibling.setAttribute('data-size', 'compact');</script>
 
               <div id="form-error" class="hidden border border-[#c20e0e] bg-[#c20e0e]/10 p-4 text-xs font-bold tracking-widest text-[#e4e4e7]" role="alert" aria-live="assertive">
                 <span class="text-[#c20e0e] font-black block mb-1">// TRANSMISSION FAILED</span>
