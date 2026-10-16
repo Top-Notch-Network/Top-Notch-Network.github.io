@@ -74,7 +74,7 @@ const jsonLd = {
     {cover && (
       <figure class="max-w-5xl mx-auto mt-10">
         <Image src={cover} alt={coverAlt ?? ''} widths={[640, 1024, 1600]} sizes="(min-width: 1024px) 1024px, 100vw" loading="eager" fetchpriority="high"
-          class="w-full aspect-[1200/630] object-cover border border-[#27272a]" />
+          class="w-full aspect-[1200/630] object-contain bg-black border border-[#27272a]" />
       </figure>
     )}
 
