@@ -88,3 +88,5 @@ If the Actions tab shows a red ✗, the site keeps showing the last good version
    - **YAML error**: usually a missing quote or a colon inside a title. Put the title in double quotes.
    - Make sure the file starts and the settings block ends with a line of exactly `---`.
 3. Fix the file, commit again and wait for the green check. Still stuck? Send the link to the failed run to the CITO.
+
+<!-- test: branch protection check (throwaway PR, do not merge) -->
