@@ -10,9 +10,9 @@ const minutes = readingTime(post.body);
 ---
 <article class:list={['group relative flex flex-col bg-[#121215] border border-[#27272a] hover:border-zinc-600 transition', featured && 'lg:grid lg:grid-cols-2']}>
   {cover && (
-    <div class:list={['overflow-hidden border-b border-[#27272a]', featured && 'lg:border-b-0 lg:border-r']}>
+    <div class:list={['overflow-hidden bg-black border-b border-[#27272a]', featured && 'lg:flex lg:items-center lg:border-b-0 lg:border-r']}>
       <Image src={cover} alt={coverAlt ?? ''} widths={[480, 800, 1200]} sizes={featured ? '(min-width: 1024px) 600px, 100vw' : '(min-width: 1024px) 400px, (min-width: 768px) 50vw, 100vw'}
-        class="w-full h-full aspect-[1200/630] object-cover opacity-90 group-hover:opacity-100 group-hover:scale-[1.02] transition duration-500" loading={featured ? 'eager' : 'lazy'} />
+        class="w-full h-auto aspect-[1200/630] object-contain bg-black opacity-90 group-hover:opacity-100 group-hover:scale-[1.02] transition duration-500" loading={featured ? 'eager' : 'lazy'} />
     </div>
   )}
   <div class:list={['flex flex-col flex-1 p-6', featured && 'md:p-8 lg:p-10 lg:justify-center']}>
