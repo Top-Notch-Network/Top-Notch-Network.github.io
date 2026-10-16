@@ -21,6 +21,7 @@ PR #<!-- number -->
 
 ## Scope
 **Pages affected:**
+
 **Files affected:**
 
 ## Visible impact to visitors
