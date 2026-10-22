@@ -51,7 +51,7 @@ These flaws live in PHP itself, not in any one website product. According to PHP
 - **Laravel:** a popular framework for building custom web applications. Laravel has [patched Laravel Cloud](https://laravel.com/blog/php-critical-vulnerability-response-updates), while [Forge](https://laravel.com/forge/docs/knowledge-base/php-security-release-october-2026) users must click "Update PHP" on each server.
 - **cPanel & WHM:** the control panel many web hosts use to manage servers. [cPanel](https://support.cpanel.net/hc/en-us/articles/44397389677335-Critical-PHP-Security-Release-CVE-2026-109618-and-CVE-2026-109619) has released patched EasyApache 4 PHP packages, including backports for PHP 7.4, 8.0, and 8.1.
 
-Affected versions: PHP 8.5.0–8.5.11, 8.4.0–8.4.26, 8.3.0–8.3.35, and 8.2.0–8.2.34. PHP 8.1 and older no longer receive official fixes, and [AWS](https://aws.amazon.com/security/security-bulletins/2026-143-aws/) notes that a supported branch is required. Updating your theme, plugins, or application code alone won't fix this.
+Affected versions: PHP 8.5.0–8.5.11, 8.4.0–8.4.26, 8.3.0–8.3.35, and 8.2.0–8.2.34, plus every older, end-of-life version. PHP 8.1 and older are past end of life and get no official PHP releases; for this emergency, the PHP security team published only minimal source-code backports for 7.4, 8.0 and 8.1, and [AWS](https://aws.amazon.com/security/security-bulletins/2026-143-aws/) notes that moving to a supported branch is required. Updating your theme, plugins, or application code alone won't fix this.
 
 ## // 03 How to address it
 
@@ -61,7 +61,7 @@ Affected versions: PHP 8.5.0–8.5.11, 8.4.0–8.4.26, 8.3.0–8.3.35, and 8.2.0
 2. **Check the version that serves web pages.** In WordPress, go to Tools > Site Health > Info > Server. On a server, the command-line version can differ from the web version.
 3. **Take a backup, then update** to 8.5.12, 8.4.27, 8.3.36, or 8.2.35 or newer, through your host, control panel, or operating system packages.
 4. **Restart PHP and the web server** so the update actually takes effect, then confirm the new version.
-5. **If you're on PHP 8.1 or older,** plan a move to a supported version now. CISA and WordPress.org both advise considering taking unpatched systems offline until they're fixed.
+5. **If you're on PHP 8.1 or older,** plan a move to a supported version now. CISA says organizations that can't update right away, or that still run PHP 8.1 or older, should take those PHP systems offline until they're patched, and WordPress.org advises self-hosted sites on older PHP to consider the same.
 6. **Confirm certificate checks are on.** Make sure custom code and integrations don't turn off `verify_peer` or `verify_peer_name`. Switching those off removes the protection the September fixes strengthened.
 7. **Can't patch today?** PHP's advisory lists temporary settings, such as disabling `session.upload_progress.enabled`, that reduce exposure. PHP is clear that they're incomplete; only the update fully fixes the problem.
 
