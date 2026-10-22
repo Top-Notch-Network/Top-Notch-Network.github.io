@@ -15,7 +15,7 @@ Same kind of tool. Very different hands. That's the story we want to talk about 
 
 ## The attack: agents that break in on their own
 
-On October 20, researchers at the security firm NorForge described a campaign in which criminals used Cairn, an open-source AI tool built for *authorized* penetration testing, to go after company websites without permission. As [The Hacker News reported](https://thehackernews.com/2026/10/hackers-use-autonomous-ai-agents-to.html), the agents tried more than 1,200 sites and reached websites belonging to more than 100 companies, with a focus on online shops and payment systems.
+On October 19, researchers at the security firm NorForge described a campaign in which criminals used Cairn, an open-source AI tool built for *authorized* penetration testing, to go after company websites without permission. As [The Hacker News reported](https://thehackernews.com/2026/10/hackers-use-autonomous-ai-agents-to.html), the agents tried more than 1,200 sites and reached websites belonging to more than 100 companies, with a focus on online shops and payment systems.
 
 A few details stood out to us:
 
@@ -29,7 +29,7 @@ A few details stood out to us:
 
 ## The response: treat agents like insiders
 
-A day earlier, Microsoft published [Agents are your newest insiders](https://www.microsoft.com/en-us/security/blog/2026/10/19/agents-are-your-newest-insiders-security-must-move-at-their-speed/), announcing new controls for AI agents working inside organizations. The core idea is simple: an agent should start with no access of its own, receive only what it needs for one task, and lose that access when the task ends. Its risk is scored continuously, and if something looks off, its permissions can be narrowed, switched to read-only, sent for human approval, or shut down.
+That same day, Microsoft published [Agents are your newest insiders](https://www.microsoft.com/en-us/security/blog/2026/10/19/agents-are-your-newest-insiders-security-must-move-at-their-speed/), announcing new controls for AI agents working inside organizations. The core idea is simple: an agent should start with no access of its own, receive only what it needs for one task, and lose that access when the task ends. Its risk is scored continuously, and if something looks off, its permissions can be narrowed, switched to read-only, sent for human approval, or shut down.
 
 The post also quotes Microsoft's chairman and CEO, Satya Nadella, with a line we keep coming back to:
 
