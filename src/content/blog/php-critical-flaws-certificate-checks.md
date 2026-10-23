@@ -1,7 +1,7 @@
 ---
-title: "Critical PHP Flaws and Certificate Checks: What to Patch and How to Stay Safe"
+title: "Critical PHP Flaws and Certificate Bugs in PHP and Node.js"
 date: 2026-10-22
-summary: "PHP just shipped emergency fixes for two critical remote code execution flaws, following a September release that fixed certificate-checking bugs. Here's what happened, what's affected, and how to address it."
+summary: "PHP just shipped emergency fixes for two critical remote code execution flaws, following a September release that fixed certificate-checking bugs. Node.js also fixed its own certificate bugs on October 21. Here's what happened, what's affected, and how to address it."
 tags: ["Security", "ITSM"]
 cover: ./images/tnn-php-hero.png
 coverAlt: "Black graphic with bold white text reading Critical PHP flaws. Patch first. Then verify., with the word patch in crimson"
@@ -11,7 +11,7 @@ author: "Top-Notch Network"
 
 PHP is the programming language behind a large share of the web, quietly powering content management systems, online stores, and custom applications. This week, the PHP project released emergency updates for two critical flaws, and government security agencies urged organizations to patch right away.
 
-They follow a September release that fixed bugs in how PHP checks security certificates. Here's our plain-language breakdown in four parts.
+They follow a September release that fixed bugs in how PHP checks security certificates, and Node.js has since fixed similar certificate bugs of its own. Here's our plain-language breakdown in four parts.
 
 ![Graphic showing four pillars: what happened, what's affected, how to address it, and staying safe going forward](./images/tnn-php-four-pillars.png)
 
@@ -41,6 +41,22 @@ The same September release also fixed **CVE-2026-91766** ([advisory](https://git
 
 The good news: the October releases include the September fixes, so one update covers all five.
 
+**A separate Node.js certificate fix.** Node.js, the JavaScript runtime behind many web apps, APIs, and developer tools, had certificate bugs of its own. On October 21, the Node.js project released Node.js 22.23.4, 24.22.1, and 26.12.1. Its [security release](https://nodejs.org/en/blog/vulnerability/october-2026-security-releases) fixes several issues, including three in how Node.js checks that a certificate matches the IP address it's connecting to:
+
+- **CVE-2026-106069**: when an IP address is written with a leading zero, such as `0127.0.0.1`, Node.js could check the certificate against a different IP address than the one it actually connected to.
+- **CVE-2026-106072**: when an IP address is written in an unusual form, such as `0x7f.0.0.1` or `127.1`, Node.js could accept a certificate issued only for names, not for that IP address.
+- **CVE-2026-105483**: an IP address written with fullwidth digits, such as `１２７.0.0.1`, could slip past the IP address check. This bug was introduced after an earlier fix.
+
+The same release updated the list of root certificates Node.js trusts, and Node.js now rejects certificate chains that run through the compromised eMudhra intermediate certificate authorities.
+
+| CVE | What it is | Severity | Affects | Fixed in |
+|---|---|---|---|---|
+| CVE-2026-106069 | Leading-zero IP checked against the wrong address | High | 26.x, 24.x, 22.x | 26.12.1, 24.22.1, 22.23.4 |
+| CVE-2026-106072 | Name-only certificate accepted for an unusually written IP | Medium | 26.x, 24.x, 22.x | 26.12.1, 24.22.1, 22.23.4 |
+| CVE-2026-105483 | Fullwidth-digit IP slips past the IP check | High | 26.x, 24.x | 26.12.1, 24.22.1 |
+
+Node.js notes that end-of-life versions are always affected when a security release ships, so treat any older Node.js version as exposed.
+
 ## // 02 What's affected
 
 These flaws live in PHP itself, not in any one website product. According to PHP, every installation that serves web requests is at risk, including PHP-FPM, Apache with mod_php, php-cgi, FrankenPHP, and LiteSpeed. Common platforms that run on PHP include:
@@ -63,7 +79,9 @@ Affected versions: PHP 8.5.0–8.5.11, 8.4.0–8.4.26, 8.3.0–8.3.35, and 8.2.0
 4. **Restart PHP and the web server** so the update actually takes effect, then confirm the new version.
 5. **If you're on PHP 8.1 or older,** plan a move to a supported version now. CISA says organizations that can't update right away, or that still run PHP 8.1 or older, should take those PHP systems offline until they're patched, and WordPress.org advises self-hosted sites on older PHP to consider the same.
 6. **Confirm certificate checks are on.** Make sure custom code and integrations don't turn off `verify_peer` or `verify_peer_name`. Switching those off removes the protection the September fixes strengthened.
-7. **Can't patch today?** PHP's advisory lists temporary settings, such as disabling `session.upload_progress.enabled`, that reduce exposure. PHP is clear that they're incomplete; only the update fully fixes the problem.
+7. **Update Node.js too.** If you run Node.js apps or tools, update to 22.23.4, 24.22.1, or 26.12.1 or newer, then restart them. Running `node -v` shows the version. If you're on an end-of-life version, plan a move to a supported one.
+8. **Keep Node.js certificate checks on.** Don't set `rejectUnauthorized: false` or `NODE_TLS_REJECT_UNAUTHORIZED=0`, and don't replace `checkServerIdentity` with custom code that skips the hostname check. Those shortcuts switch off the protection these fixes restore.
+9. **Can't patch today?** PHP's advisory lists temporary settings, such as disabling `session.upload_progress.enabled`, that reduce exposure. PHP is clear that they're incomplete; only the update fully fixes the problem.
 
 ## // 04 Staying safe going forward
 
