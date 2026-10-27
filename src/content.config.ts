@@ -23,6 +23,9 @@ const blog = defineCollection({
       coverAlt: z.string().optional(),
       draft: z.boolean().default(false),
       author: z.string().default('Seth Berg'),
+      // Optional search-snippet overrides (display title/summary stay unchanged).
+      seoTitle: z.string().max(70).optional(),
+      seoDescription: z.string().max(160).optional(),
     }),
 });
 

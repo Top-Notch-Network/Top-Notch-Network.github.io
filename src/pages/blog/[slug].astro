@@ -5,6 +5,7 @@ import BlogLayout from '../../layouts/BlogLayout.astro';
 import TagChip from '../../components/blog/TagChip.astro';
 import RssButton from '../../components/blog/RssButton.astro';
 import { getPosts, formatDate, isoDate, readingTime, SITE, type Post } from '../../lib/blog';
+import { LOGO_SQUARE, ORG_ID, breadcrumbLd } from '../../lib/seo';
 
 export async function getStaticPaths() {
   const posts = await getPosts();
@@ -15,7 +16,12 @@ export async function getStaticPaths() {
 }
 interface Props { post: Post; newer?: Post; older?: Post }
 const { post, newer, older } = Astro.props;
-const { title, summary, date, updated, tags, cover, coverAlt, author, draft } = post.data;
+const { title, summary, date, updated, tags, cover, coverAlt, author, draft, seoTitle, seoDescription } = post.data;
+const metaTitle = seoTitle ?? title;
+const metaDescription = seoDescription ?? summary;
+const documentTitle = seoTitle
+  ? (seoTitle.includes(SITE.name) ? seoTitle : `${seoTitle} | ${SITE.name}`)
+  : undefined;
 const { Content } = await render(post);
 const minutes = readingTime(post.body);
 const url = new URL(`/blog/${post.id}/`, SITE.url).href;
@@ -24,25 +30,39 @@ const url = new URL(`/blog/${post.id}/`, SITE.url).href;
 const og = cover ? (await getImage({ src: cover, width: 1200, height: 630, fit: 'cover', format: 'jpg' })).src : SITE.ogDefault;
 const ogAbs = new URL(og, SITE.url).href;
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'BlogPosting',
-  headline: title,
-  description: summary,
-  datePublished: date.toISOString(),
-  dateModified: (updated ?? date).toISOString(),
-  mainEntityOfPage: { '@type': 'WebPage', '@id': url },
-  url,
-  image: [ogAbs],
-  keywords: tags.join(', '),
-  wordCount: (post.body ?? '').split(/\s+/).filter(Boolean).length,
-  inLanguage: 'en-US',
-  author: { '@type': 'Person', name: author, worksFor: { '@type': 'Organization', name: SITE.name, url: SITE.url } },
-  publisher: { '@type': 'Organization', name: SITE.name, url: SITE.url, logo: { '@type': 'ImageObject', url: new URL(SITE.logo, SITE.url).href } },
-};
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: title,
+    description: metaDescription,
+    datePublished: date.toISOString(),
+    dateModified: (updated ?? date).toISOString(),
+    mainEntityOfPage: { '@type': 'WebPage', '@id': url },
+    url,
+    image: [ogAbs],
+    keywords: tags.join(', '),
+    wordCount: (post.body ?? '').split(/\s+/).filter(Boolean).length,
+    inLanguage: 'en-US',
+    // Invisible schema fix: Organization author (visible byline stays `author` frontmatter).
+    author: { '@type': 'Organization', '@id': ORG_ID, name: SITE.name, url: SITE.url },
+    publisher: {
+      '@type': 'Organization',
+      '@id': ORG_ID,
+      name: SITE.name,
+      url: SITE.url,
+      logo: { '@type': 'ImageObject', url: new URL(LOGO_SQUARE, SITE.url).href },
+    },
+  },
+  breadcrumbLd([
+    { name: 'Home', path: '/' },
+    { name: 'Blog', path: '/blog/' },
+    { name: title },
+  ]),
+];
 ---
 <BlogLayout
-  title={title} description={summary} type="article" image={og} imageAlt={coverAlt ?? title}
+  title={metaTitle} description={metaDescription} documentTitle={documentTitle} type="article" image={og} imageAlt={coverAlt ?? title}
   publishedTime={date.toISOString()} modifiedTime={(updated ?? date).toISOString()} tags={tags} jsonLd={jsonLd} noindex={draft}
 >
   <article class="px-6 pt-12 md:pt-16 pb-16">

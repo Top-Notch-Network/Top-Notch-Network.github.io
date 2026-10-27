@@ -1,6 +1,6 @@
 ---
 import SeoMeta from '../components/SeoMeta.astro';
-import { SEO } from '../lib/seo';
+import { SEO, aboutPageLd } from '../lib/seo';
 // src/pages/about.astro
 import '../styles/global.css';
 
@@ -49,8 +49,8 @@ const companyPillars = [
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
-    <title>Top-Notch Network | About The Company</title>
-    <SeoMeta title="Top-Notch Network | About The Company" description={SEO.about.description} />
+    <title>{SEO.about.title}</title>
+    <SeoMeta title={SEO.about.title} description={SEO.about.description} jsonLd={aboutPageLd()} />
   </head>
   <body class="bg-black text-zinc-200 font-sans selection:bg-[#c20e0e] selection:text-white uppercase tracking-wider min-h-screen">
     

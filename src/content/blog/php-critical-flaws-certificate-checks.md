@@ -7,6 +7,8 @@ cover: ./images/tnn-php-hero.png
 coverAlt: "Black graphic with bold white text reading Critical PHP flaws. Patch first. Then verify., with the word patch in crimson"
 draft: false
 author: "Top-Notch Network"
+seoTitle: "Critical PHP Flaws: What to Patch"
+seoDescription: "PHP emergency fixes for two critical RCE flaws, plus certificate bugs in PHP and Node.js. What happened, what is affected, and how to patch."
 ---
 
 PHP is the programming language behind a large share of the web, quietly powering content management systems, online stores, and custom applications. This week, the PHP project released emergency updates for two critical flaws, and government security agencies urged organizations to patch right away.
