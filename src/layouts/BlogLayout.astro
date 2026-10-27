@@ -6,7 +6,7 @@ import SiteFooter from '../components/SiteFooter.astro';
 import { SITE } from '../lib/blog';
 
 interface Props {
-  title: string;              // page title (without the site suffix)
+  title: string;              // page / og title (without site suffix unless documentTitle is set)
   description: string;
   image?: string;             // absolute or root-relative OG image URL
   imageAlt?: string;
@@ -16,11 +16,26 @@ interface Props {
   modifiedTime?: string;
   tags?: string[];
   noindex?: boolean;
+  /** Exact <title> when set (e.g. seoTitle already includes brand). Else `${title} | ${SITE.name}`. */
+  documentTitle?: string;
 }
-const { title, description, image = SITE.ogDefault, imageAlt = 'Top-Notch Network', type = 'website', jsonLd, publishedTime, modifiedTime, tags = [], noindex = false } = Astro.props;
+const {
+  title,
+  description,
+  image = SITE.ogDefault,
+  imageAlt = 'Top-Notch Network',
+  type = 'website',
+  jsonLd,
+  publishedTime,
+  modifiedTime,
+  tags = [],
+  noindex = false,
+  documentTitle,
+} = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site ?? SITE.url).href;
 const ogImage = new URL(image, Astro.site ?? SITE.url).href;
-const fullTitle = `${title} | ${SITE.name}`;
+const fullTitle = documentTitle ?? `${title} | ${SITE.name}`;
+const blocks = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
 ---
 <html lang="en">
   <head>
@@ -55,7 +70,7 @@ const fullTitle = `${title} | ${SITE.name}`;
     <meta name="twitter:image" content={ogImage} />
     <meta name="twitter:image:alt" content={imageAlt} />
 
-    {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
+    {blocks.map((b) => <script type="application/ld+json" set:html={JSON.stringify(b)} />)}
   </head>
   <body class="bg-black text-zinc-200 font-sans selection:bg-[#c20e0e] selection:text-white uppercase tracking-wider min-h-screen flex flex-col">
     <SiteNav />

@@ -7,6 +7,8 @@ cover: ./images/tnn-trends-hero.png
 coverAlt: "Black graphic with bold white text reading Smarter tools. Stronger trust. Same mission., with the word mission in crimson"
 draft: false
 author: "Top-Notch Network"
+seoTitle: "Tech, AI & Leadership Trends"
+seoDescription: "Four signals shaping tech and leadership now—AI agents, built-in trust, passkeys, and the human side of leading—for service-driven leaders."
 ---
 
 Every year brings a new wave of tools, acronyms, and predictions. Most of it is noise. A few things, though, really do change how service-driven leaders work. They change how they protect the people in their care, and how much of their time goes to the work that matters most.

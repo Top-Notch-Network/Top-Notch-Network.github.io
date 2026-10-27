@@ -14,6 +14,8 @@ tags: ["Leadership", "Governance"]  # required: 1 to 3 of: Leadership, Governanc
 draft: true                         # true = hidden on the live site; change to false when ready to publish
 # author: "Seth Berg"               # optional, defaults to Seth Berg
 # updated: 2026-10-20               # optional, date of a meaningful update
+# seoTitle: "Short search title"    # optional, ~60 chars with brand suffix in <title>
+# seoDescription: "Search snippet." # optional, ~155 chars; else summary is used
 ---
 
 Write the opening paragraph here. Say what the reader will get from the post in the first two or three sentences.

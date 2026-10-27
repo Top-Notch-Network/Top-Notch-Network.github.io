@@ -7,6 +7,8 @@ cover: ./images/tnn-agents-hero.png
 coverAlt: "Black graphic with bold white text reading Same tools. Different hands. Who holds the keys?, with the word keys in crimson"
 draft: false
 author: "Top-Notch Network"
+seoTitle: "AI Agents on Both Sides"
+seoDescription: "Attackers used autonomous AI agents against company sites; Microsoft added enterprise agent controls. What both mean for trust and access."
 ---
 
 Two stories landed in the same week, and together they say a lot about where technology is heading. In one, attackers pointed autonomous AI agents at company websites and let them work largely on their own. In the other, one of the world's largest software companies rolled out new ways to watch and limit the AI agents that organizations are inviting inside.

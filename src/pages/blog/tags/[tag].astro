@@ -4,6 +4,8 @@ import PostCard from '../../../components/blog/PostCard.astro';
 import TagFilter from '../../../components/blog/TagFilter.astro';
 import RssButton from '../../../components/blog/RssButton.astro';
 import { getPosts, allTags, tagSlug } from '../../../lib/blog';
+import { TAG_META, breadcrumbLd } from '../../../lib/seo';
+import type { BlogTag } from '../../../lib/tags';
 
 export async function getStaticPaths() {
   const posts = await getPosts();
@@ -14,8 +16,14 @@ export async function getStaticPaths() {
 }
 const { tag, posts } = Astro.props;
 const all = await getPosts();
+const description = TAG_META[tag as BlogTag] ?? `Top-Notch Network blog posts about ${tag}.`;
+const jsonLd = breadcrumbLd([
+  { name: 'Home', path: '/' },
+  { name: 'Blog', path: '/blog/' },
+  { name: tag },
+]);
 ---
-<BlogLayout title={`Posts tagged “${tag}”`} description={`Top-Notch Network blog posts about ${tag}.`}>
+<BlogLayout title={`Posts tagged “${tag}”`} description={description} jsonLd={jsonLd}>
   <section class="max-w-7xl mx-auto px-6 pt-16 md:pt-20 pb-8">
     <a href="/blog/" class="relative before:absolute before:inset-x-0 before:-inset-y-3.5 text-xs font-black tracking-widest text-zinc-500 hover:text-white transition">← ALL POSTS</a>
     <h1 class="mt-6 text-3xl sm:text-5xl font-black tracking-tight text-[#e4e4e7] leading-tight">

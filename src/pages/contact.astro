@@ -1,6 +1,6 @@
 ---
 import SeoMeta from '../components/SeoMeta.astro';
-import { SEO } from '../lib/seo';
+import { SEO, contactPageLd } from '../lib/seo';
 // src/pages/contact.astro
 import '../styles/global.css';
 import ServiceChips from '../components/service-field/ServiceChips.astro';
@@ -55,8 +55,8 @@ const steps = [
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
-    <title>Top-Notch Network | Contact Us</title>
-    <SeoMeta title="Top-Notch Network | Contact Us" description={SEO.contact.description} />
+    <title>{SEO.contact.title}</title>
+    <SeoMeta title={SEO.contact.title} description={SEO.contact.description} jsonLd={contactPageLd()} />
   </head>
   <body class="bg-black text-zinc-200 font-sans selection:bg-[#c20e0e] selection:text-white uppercase tracking-wider min-h-screen">
     

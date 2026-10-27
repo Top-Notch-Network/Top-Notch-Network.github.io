@@ -4,20 +4,38 @@ import PostCard from '../../components/blog/PostCard.astro';
 import TagFilter from '../../components/blog/TagFilter.astro';
 import RssButton from '../../components/blog/RssButton.astro';
 import { getPosts, SITE } from '../../lib/blog';
+import { SEO, LOGO_SQUARE, ORG_ID, breadcrumbLd } from '../../lib/seo';
 
 const posts = await getPosts();
 const [latest, ...rest] = posts;
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'Blog',
-  name: SITE.blogTitle,
-  description: SITE.blogDescription,
-  url: new URL('/blog/', SITE.url).href,
-  publisher: { '@type': 'Organization', name: SITE.name, url: SITE.url, logo: new URL(SITE.logo, SITE.url).href },
-  blogPost: posts.map((p) => ({ '@type': 'BlogPosting', headline: p.data.title, url: new URL(`/blog/${p.id}/`, SITE.url).href, datePublished: p.data.date.toISOString() })),
-};
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Blog',
+    name: SITE.blogTitle,
+    description: SITE.blogDescription,
+    url: new URL('/blog/', SITE.url).href,
+    publisher: {
+      '@type': 'Organization',
+      '@id': ORG_ID,
+      name: SITE.name,
+      url: SITE.url,
+      logo: new URL(LOGO_SQUARE, SITE.url).href,
+    },
+    blogPost: posts.map((p) => ({
+      '@type': 'BlogPosting',
+      headline: p.data.title,
+      url: new URL(`/blog/${p.id}/`, SITE.url).href,
+      datePublished: p.data.date.toISOString(),
+    })),
+  },
+  breadcrumbLd([
+    { name: 'Home', path: '/' },
+    { name: 'Blog', path: '/blog/' },
+  ]),
+];
 ---
-<BlogLayout title="Blog" description={SITE.blogDescription} jsonLd={jsonLd}>
+<BlogLayout title="IT, AI & Leadership Insights" description={SEO.blog.description} documentTitle={SEO.blog.title} jsonLd={jsonLd}>
   <section class="max-w-7xl mx-auto px-6 pt-16 md:pt-20 pb-10">
     <span class="text-[#c20e0e] text-xs font-black tracking-widest block mb-4">// MEDIA / BLOG</span>
     <h1 class="text-4xl sm:text-6xl font-black tracking-tight text-[#e4e4e7] leading-tight mb-5">
