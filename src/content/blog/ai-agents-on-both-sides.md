@@ -17,7 +17,7 @@ Same kind of tool. Very different hands. That's the story we want to talk about 
 
 ## The attack: agents that break in on their own
 
-On October 19, researchers at the security firm NorForge described a campaign in which criminals used Cairn, an open-source AI tool built for *authorized* penetration testing, to go after company websites without permission. As [The Hacker News reported](https://thehackernews.com/2026/10/hackers-use-autonomous-ai-agents-to.html), the agents tried more than 1,200 sites and reached websites belonging to more than 100 companies, with a focus on online shops and payment systems.
+On October 19, researchers at the security company NorForge described a campaign in which criminals used Cairn, an open-source AI tool built for *authorized* penetration testing, to go after company websites without permission. As [The Hacker News reported](https://thehackernews.com/2026/10/hackers-use-autonomous-ai-agents-to.html), the agents tried more than 1,200 sites and reached websites belonging to more than 100 companies, with a focus on online shops and payment systems.
 
 A few details stood out to us:
 

@@ -29,7 +29,7 @@ export const SEO = {
     title: 'About Top-Notch Network | Stewardship-Led Consulting',
     // DEFAULT, pending CMO copy
     description:
-      'About Top-Notch Network: a consulting firm focused on stewardship, leadership and dependable technology for service-driven organizations.',
+      'About Top-Notch Network: a consulting company focused on stewardship, leadership and dependable technology for service-driven organizations.',
   },
   default: {
     // DEFAULT, pending CMO copy
