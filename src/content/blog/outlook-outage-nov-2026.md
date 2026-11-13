@@ -11,7 +11,7 @@ seoTitle: "Microsoft 365 Outlook Outage: What Happened and What to Do"
 seoDescription: "A Microsoft 365 outage cut many users off from Outlook and Exchange Online on Nov 12. What happened, where things stand, and practical steps to take."
 ---
 
-On Thursday, Nov 12, many organizations opened Outlook and found nothing would load. A Microsoft 365 outage centered on Exchange Online, the service behind business email and calendars, left users unable to reach their mailboxes and spread into Teams, Copilot, and other tools that depend on it. As of early Friday morning, Microsoft reported steady recovery but had not declared the outage resolved.
+On Thursday, Nov 12, many organizations opened Outlook and found nothing would load. A Microsoft 365 outage centered on Exchange Online, the service behind business email and calendars, left users unable to reach their mailboxes and spread into Teams, Copilot, and other tools that depend on it. As of 11:05 AM MST Friday, Microsoft reported broad recovery and stability across its services and said it had addressed the underlying issue.
 
 Here's a plain-language look at what happened, where things stand, and the steps that help most while a core service is down.
 
@@ -28,6 +28,18 @@ As for the cause, Microsoft first pointed to elevated load, then [clarified](htt
 ![Timeline of the Nov 12 Microsoft 365 outage in MST, from the first mailbox reports at 10:54 AM to steady recovery by early Friday, with email queues near normal levels at 7:17 AM and the outage not yet declared resolved](./images/tnn-outage-timeline.png)
 
 ## // 02 Where things stand
+
+### Update (11:05 AM MST, Friday, Nov 13)
+
+At 11:05 AM MST, Microsoft [posted on X](https://x.com/MSFT365Status/status/2121303408313303423) an apology for the disruption and said it is "seeing broad recovery and stability across our services." It also gave its first explanation of the cause:
+
+- **Not a cyber or AI issue.** Microsoft said this "was a technical issue not related to cyber or AI / agents."
+- **Cause.** The incident "was introduced by an issue during an earlier network capacity upgrade that surfaced following a recent network change."
+- **Status.** Microsoft said it has "addressed the underlying issue and continue[s] to restore service to remaining customers and regions."
+- **Gradual restoration.** Given the scale of demand, it restored services gradually, "validating stability at each stage," which took longer but helped ensure a stable restoration.
+- **What's next.** Microsoft will provide a full post-incident report once its review is complete. That report has not been published yet, so details may change.
+
+The earlier status below is kept for the record.
 
 **As of 7:57 AM MST Friday, Nov 13**, Microsoft said it was "observing sustained improvements in service availability as recovery progresses across affected Microsoft 365 services." It added that some users may still experience intermittent connectivity issues or delayed email delivery, that its efforts are increasingly focused on resolving remaining issues and restoring consistent service, and that it is validating recovery across connection methods and monitoring stability. Microsoft said it has no evidence of malicious activity and will publish a Post-Incident Report after mitigation is complete. Its [public status page](https://status.cloud.microsoft/) still listed "Service degradation" for both incidents, so the outage was not declared resolved, and Microsoft's next update was due by 9:00 AM MST. The earlier 7:17 AM MST update on X had said service availability was continuing to improve, with [email queues significantly reduced and approaching normal levels](https://x.com/MSFT365Status/status/2121246073955962896). Recovery was uneven overnight. Servers brought back in the afternoon [could become unresponsive again](https://x.com/MSFT365Status/status/2121031935010951521) once traffic returned, and at 8:13 PM MST Microsoft said its changes were "[not taking as expected](https://x.com/MSFT365Status/status/2121079061774491735)." By 9:36 PM MST it reported [partial recovery](https://x.com/MSFT365Status/status/2121099952633840043). Early Friday, Microsoft [said](https://x.com/MSFT365Status/status/2121172248241348867) it was seeing early stabilization and had extended the email timeout to 48 hours to help preserve delayed mail. By 4:11 AM it reported [actions completed](https://x.com/MSFT365Status/status/2121199246959378803) across portions of the affected infrastructure, and at 6:32 AM [continued recovery](https://x.com/MSFT365Status/status/2121234739562450970) in North America, Europe, and Asia Pacific. Microsoft has not given a time for full recovery.
 
