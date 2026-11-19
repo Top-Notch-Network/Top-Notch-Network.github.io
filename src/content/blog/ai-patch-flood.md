@@ -54,7 +54,7 @@ This isn't a one-month spike. AI-driven discovery is speeding up, not slowing do
 
 - **Measure in days, not cycles.** Track how many days it takes for an update to reach most devices. That one number shows whether the process is keeping up.
 - **Let automation carry the routine.** Tools like Windows Autopatch, staged rings, and hotpatching (updates without a restart, on eligible systems) reduce disruption and free people for the judgment calls.
-- **Test smart, not slow.** A small pilot group that gets updates first catches most problems without holding back everyone else. This month, some organizations saw [printing problems](https://www.bleepingcomputer.com/news/microsoft/microsoft-says-november-security-updates-cause-printing-issues/) and failed installs after the November update, exactly the kind of issue a pilot group finds early.
+- **Test smart, not slow.** A small pilot group that gets updates first catches most problems without holding back everyone else. This month, some organizations saw [printing problems](https://www.bleepingcomputer.com/news/microsoft/microsoft-says-november-security-updates-cause-printing-issues/) and [failed installs](https://www.bleepingcomputer.com/news/microsoft/microsoft-confirms-kb5132061-installation-issues-0x80070306-0x800f0989-0x800f0993-errors/) after the November update, exactly the kind of issue a pilot group finds early.
 - **Stay on supported versions.** Systems that no longer receive updates can't benefit from any of this.
 - **Keep a plan B.** Good backups, endpoint detection, and a clear response plan matter more when the window is short.
 
