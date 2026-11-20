@@ -1,13 +1,17 @@
 ---
 import BlogLayout from '../../layouts/BlogLayout.astro';
 import PostCard from '../../components/blog/PostCard.astro';
+import ArchiveSection from '../../components/blog/ArchiveSection.astro';
 import TagFilter from '../../components/blog/TagFilter.astro';
 import RssButton from '../../components/blog/RssButton.astro';
 import { getPosts, SITE } from '../../lib/blog';
 import { SEO, LOGO_SQUARE, ORG_ID, breadcrumbLd } from '../../lib/seo';
 
 const posts = await getPosts();
-const [latest, ...rest] = posts;
+const [latest, ...older] = posts;
+const RECENT_COUNT = 6;
+const recent = older.slice(0, RECENT_COUNT);
+const archived = older.slice(RECENT_COUNT);
 const jsonLd = [
   {
     '@context': 'https://schema.org',
@@ -68,12 +72,19 @@ const jsonLd = [
         </div>
       </div>
     ) : (
-      <div class="flex flex-col gap-8">
-        <PostCard post={latest} featured />
-        {rest.length > 0 && (
-          <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">{rest.map((p) => <PostCard post={p} />)}</div>
+      <>
+        <div class="flex flex-col gap-8">
+          <PostCard post={latest} featured />
+          {recent.length > 0 && (
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">{recent.map((p) => <PostCard post={p} />)}</div>
+          )}
+        </div>
+        {archived.length > 0 && (
+          <div class="mt-12">
+            <ArchiveSection posts={archived} />
+          </div>
         )}
-      </div>
+      </>
     )}
   </section>
 </BlogLayout>
