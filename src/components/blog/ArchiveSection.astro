@@ -1,0 +1,44 @@
+---
+// Collapsed archive of posts older than the featured card and the 6-card grid on /blog.
+// Native <details>/<summary> (no JS). Links stay in the HTML for crawlers when closed.
+import PostCard from './PostCard.astro';
+import type { Post } from '../../lib/blog';
+
+interface Props { posts: Post[] }
+const { posts } = Astro.props;
+
+const byYear = new Map<number, Post[]>();
+for (const p of posts) {
+  const year = p.data.date.getUTCFullYear();
+  if (!byYear.has(year)) byYear.set(year, []);
+  byYear.get(year)!.push(p);
+}
+const groups = [...byYear.entries()].sort((a, b) => b[0] - a[0]);
+const countLabel = `${posts.length} ${posts.length === 1 ? 'POST' : 'POSTS'}`;
+---
+{posts.length > 0 && (
+  <details class="border-t border-[#27272a] pt-8">
+    <summary class="group cursor-pointer list-none flex flex-wrap items-center gap-x-4 gap-y-2 py-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#c20e0e] focus-visible:ring-offset-2 focus-visible:ring-offset-black">
+      <span class="text-[#c20e0e] text-xs font-black tracking-widest">// ARCHIVE</span>
+      <span class="text-xs font-black tracking-widest text-[#e4e4e7] group-hover:text-white transition">Older posts</span>
+      <span class="text-[11px] font-bold tracking-widest text-zinc-500">{countLabel}</span>
+      <svg class="archive-chevron w-3.5 h-3.5 text-zinc-500 group-hover:text-white transition-transform shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6" /></svg>
+    </summary>
+    <div class="mt-8 flex flex-col gap-10">
+      {groups.map(([year, yearPosts]) => (
+        <div>
+          <p class="text-[#c20e0e] text-xs font-black tracking-widest mb-4">// {year}</p>
+          <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {yearPosts.map((p) => <PostCard post={p} />)}
+          </div>
+        </div>
+      ))}
+    </div>
+  </details>
+)}
+
+<style>
+  summary::-webkit-details-marker { display: none; }
+  summary { list-style: none; }
+  details[open] .archive-chevron { transform: rotate(180deg); }
+</style>
